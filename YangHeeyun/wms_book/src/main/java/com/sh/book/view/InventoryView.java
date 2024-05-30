@@ -4,15 +4,16 @@ import java.util.Scanner;
 
 public class InventoryView {
     private Scanner sc = new Scanner(System.in);
-    private MainView mainView = new MainView();
+//    private MainView mainView = new MainView();
 
-    public void bookMenu(){
+    public void inventoryMenu(){
         String menu = """
         =====================
         1. 재고 조회
         2. 재고 입고
         3. 재고 출고
         4. 재고 이동
+        0. 뒤로가기
         =====================
         입력 : """;
 

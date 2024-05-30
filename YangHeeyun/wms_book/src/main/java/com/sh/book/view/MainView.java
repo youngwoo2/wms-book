@@ -20,13 +20,13 @@ public class MainView {
             입력 : """;
 
         while(true){
-            System.out.println("로그인 성공...");
-            System.out.println(menu);
+            System.out.println("[로그인 성공]");
+            System.out.print(menu);
             String choice = sc.next();
             switch(choice){
-                case "1" : bookView().bookMenu(); break;
-                case "2" : inventoryView().inventoryMenu(); break;
-                case "3" : orderView().orderMenu(); break;
+                case "1" : bookView.bookMenu(); break;
+                case "2" : inventoryMenu.inventoryMenu(); break;
+                case "3" : orderView.orderMenu(); break;
                 case "0" : return;
                 default:
                     System.out.println("잘못 입력하셨습니다.");
