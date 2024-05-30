@@ -1,10 +1,10 @@
-DROP TABLE IF EXISTS tbl_order_item CASCADE ;
-DROP TABLE IF EXISTS tbl_order CASCADE ;
-DROP TABLE IF EXISTS tbl_user CASCADE ;
-DROP TABLE IF EXISTS tbl_inventory CASCADE ;
-DROP TABLE IF EXISTS tbl_book CASCADE ;
-
-
+=======
+DROP TABLE IF EXISTS tbl_order_item CASCADE;
+DROP TABLE IF EXISTS tbl_order CASCADE;
+DROP TABLE IF EXISTS tbl_user CASCADE;
+DROP TABLE IF EXISTS tbl_inventory CASCADE;
+DROP TABLE IF EXISTS tbl_book CASCADE;
+>>>>>>> 20605d0aee0aeae5c1e762b0c42ec86e058769c3:__data__/sql/wms_book_db-v2.sql
 
 CREATE TABLE tbl_user (
     user_id INT AUTO_INCREMENT PRIMARY KEY COMMENT '사용자 ID',
@@ -35,10 +35,10 @@ CREATE TABLE tbl_inventory (
 
 CREATE TABLE tbl_order (
     order_id INT AUTO_INCREMENT PRIMARY KEY COMMENT '주문 ID',
-    user_id INT NOT NULL COMMENT '사용자 ID',
+    orderer_name VARCHAR(50) NOT NULL COMMENT '주문자 이름',
+    orderer_address VARCHAR(100) NOT NULL COMMENT '배송지',
     order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '주문 날짜',
-    status ENUM('pending', 'processing', 'shipped', 'completed') DEFAULT 'pending' COMMENT '주문 상태',
-    FOREIGN KEY (user_id) REFERENCES tbl_user(user_id)
+    status ENUM('주문확인중', '배송준비중', '발송완료', '배송중', '배송완료', '주문취소') DEFAULT '주문확인중' COMMENT '주문 상태'
 ) COMMENT '주문 테이블';
 
 CREATE TABLE tbl_order_item (
@@ -46,7 +46,6 @@ CREATE TABLE tbl_order_item (
     order_id INT NOT NULL COMMENT '주문 ID',
     book_id INT NOT NULL COMMENT '도서 ID',
     quantity INT NOT NULL COMMENT '수량',
-    price DECIMAL(10, 2) NOT NULL COMMENT '가격',
     FOREIGN KEY (order_id) REFERENCES tbl_order(order_id),
     FOREIGN KEY (book_id) REFERENCES tbl_book(book_id)
 ) COMMENT '주문 항목 테이블';
@@ -152,67 +151,39 @@ INSERT INTO tbl_inventory (book_id, quantity, location) VALUES
 ((SELECT book_id FROM tbl_book WHERE title='근현대사'), 330, '창고3');
 
 -- tbl_order 테이블 샘플 데이터
-INSERT INTO tbl_order (user_id, order_date, status) VALUES
-((SELECT user_id FROM tbl_user WHERE username='직원1'), '2023-01-01 10:00:00', 'pending'),
-((SELECT user_id FROM tbl_user WHERE username='직원2'), '2023-01-02 11:00:00', 'processing'),
-((SELECT user_id FROM tbl_user WHERE username='직원3'), '2023-01-03 12:00:00', 'shipped'),
-((SELECT user_id FROM tbl_user WHERE username='직원4'), '2023-01-04 13:00:00', 'completed'),
-((SELECT user_id FROM tbl_user WHERE username='직원5'), '2023-01-05 14:00:00', 'pending'),
-((SELECT user_id FROM tbl_user WHERE username='직원6'), '2023-01-06 15:00:00', 'processing'),
-((SELECT user_id FROM tbl_user WHERE username='직원7'), '2023-01-07 16:00:00', 'shipped'),
-((SELECT user_id FROM tbl_user WHERE username='직원8'), '2023-01-08 17:00:00', 'completed'),
-((SELECT user_id FROM tbl_user WHERE username='직원9'), '2023-01-09 18:00:00', 'pending'),
-((SELECT user_id FROM tbl_user WHERE username='직원10'), '2023-01-10 19:00:00', 'processing'),
-((SELECT user_id FROM tbl_user WHERE username='직원11'), '2023-01-11 20:00:00', 'shipped'),
-((SELECT user_id FROM tbl_user WHERE username='직원12'), '2023-01-12 21:00:00', 'completed'),
-((SELECT user_id FROM tbl_user WHERE username='직원13'), '2023-01-13 22:00:00', 'pending'),
-((SELECT user_id FROM tbl_user WHERE username='직원14'), '2023-01-14 23:00:00', 'processing'),
-((SELECT user_id FROM tbl_user WHERE username='직원15'), '2023-01-15 10:00:00', 'shipped'),
-((SELECT user_id FROM tbl_user WHERE username='직원16'), '2023-01-16 11:00:00', 'completed'),
-((SELECT user_id FROM tbl_user WHERE username='직원17'), '2023-01-17 12:00:00', 'pending'),
-((SELECT user_id FROM tbl_user WHERE username='직원18'), '2023-01-18 13:00:00', 'processing'),
-((SELECT user_id FROM tbl_user WHERE username='직원19'), '2023-01-19 14:00:00', 'shipped'),
-((SELECT user_id FROM tbl_user WHERE username='직원20'), '2023-01-20 15:00:00', 'completed'),
-((SELECT user_id FROM tbl_user WHERE username='직원21'), '2023-01-21 16:00:00', 'pending'),
-((SELECT user_id FROM tbl_user WHERE username='직원22'), '2023-01-22 17:00:00', 'processing'),
-((SELECT user_id FROM tbl_user WHERE username='직원23'), '2023-01-23 18:00:00', 'shipped'),
-((SELECT user_id FROM tbl_user WHERE username='직원24'), '2023-01-24 19:00:00', 'completed'),
-((SELECT user_id FROM tbl_user WHERE username='직원25'), '2023-01-25 20:00:00', 'pending'),
-((SELECT user_id FROM tbl_user WHERE username='직원26'), '2023-01-26 21:00:00', 'processing'),
-((SELECT user_id FROM tbl_user WHERE username='직원27'), '2023-01-27 22:00:00', 'shipped'),
-((SELECT user_id FROM tbl_user WHERE username='직원28'), '2023-01-28 23:00:00', 'completed'),
-((SELECT user_id FROM tbl_user WHERE username='도서관리자1'), '2023-01-29 10:00:00', 'pending'),
-((SELECT user_id FROM tbl_user WHERE username='관리자'), '2023-01-30 11:00:00', 'processing');
+INSERT INTO tbl_order (orderer_name, orderer_address, order_date, status) VALUES
+('김철수', '서울시 강남구 역삼동 123-45', '2024-05-29 14:05:10', '배송준비중'),
+('이영희', '부산시 해운대구 우동 678-90', '2024-05-28 14:05:10', '발송완료'),
+('박민수', '대구시 수성구 범어동 111-22', '2024-05-27 14:05:10', '배송완료'),
+('최지훈', '인천시 남동구 구월동 333-44', '2024-05-26 14:05:10', '주문취소'),
+('장수진', '광주시 북구 용봉동 555-66', '2024-05-25 14:05:10', '주문확인중'),
+('홍길동', '서울시 서초구 서초동 101-23', '2024-05-24 14:05:10', '배송준비중'),
+('이민호', '부산시 남구 대연동 456-78', '2024-05-23 14:05:10', '발송완료'),
+('김영희', '대전시 유성구 봉명동 999-88', '2024-05-22 14:05:10', '배송완료'),
+('정수현', '울산시 남구 삼산동 222-33', '2024-05-21 14:05:10', '주문취소'),
+('박지성', '수원시 팔달구 인계동 444-55', '2024-05-20 14:05:10', '주문확인중');
+
 
 -- tbl_order_item 테이블 샘플 데이터
-INSERT INTO tbl_order_item (order_id, book_id, quantity, price) VALUES
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원1')), (SELECT book_id FROM tbl_book WHERE title='데이터베이스 관리'), 2, 25000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원2')), (SELECT book_id FROM tbl_book WHERE title='자바 프로그래밍'), 1, 30000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원3')), (SELECT book_id FROM tbl_book WHERE title='알고리즘 문제해결 전략'), 3, 27000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원4')), (SELECT book_id FROM tbl_book WHERE title='머신러닝 입문'), 4, 32000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원5')), (SELECT book_id FROM tbl_book WHERE title='딥러닝 실전'), 2, 35000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원6')), (SELECT book_id FROM tbl_book WHERE title='파이썬 완벽 가이드'), 5, 28000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원7')), (SELECT book_id FROM tbl_book WHERE title='네트워크 해킹과 보안'), 1, 26000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원8')), (SELECT book_id FROM tbl_book WHERE title='리눅스 커맨드라인 완벽정리'), 3, 29000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원9')), (SELECT book_id FROM tbl_book WHERE title='운영체제의 이해'), 2, 27000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원10')), (SELECT book_id FROM tbl_book WHERE title='컴퓨터 구조와 원리'), 4, 28000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원11')), (SELECT book_id FROM tbl_book WHERE title='클라우드 컴퓨팅 개론'), 3, 30000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원12')), (SELECT book_id FROM tbl_book WHERE title='데이터 과학 개론'), 2, 32000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원13')), (SELECT book_id FROM tbl_book WHERE title='빅데이터 분석'), 1, 34000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원14')), (SELECT book_id FROM tbl_book WHERE title='통계학 입문'), 5, 25000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원15')), (SELECT book_id FROM tbl_book WHERE title='확률과 통계'), 2, 27000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원16')), (SELECT book_id FROM tbl_book WHERE title='수학의 정석'), 3, 24000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원17')), (SELECT book_id FROM tbl_book WHERE title='공업수학'), 4, 26000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원18')), (SELECT book_id FROM tbl_book WHERE title='선형대수학'), 1, 28000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원19')), (SELECT book_id FROM tbl_book WHERE title='미적분학'), 3, 30000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원20')), (SELECT book_id FROM tbl_book WHERE title='물리학의 기본'), 2, 32000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원21')), (SELECT book_id FROM tbl_book WHERE title='화학의 원리'), 4, 31000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원22')), (SELECT book_id FROM tbl_book WHERE title='생물학 입문'), 3, 29000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원23')), (SELECT book_id FROM tbl_book WHERE title='지구과학 개론'), 5, 27000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원24')), (SELECT book_id FROM tbl_book WHERE title='환경과 생태'), 2, 26000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원25')), (SELECT book_id FROM tbl_book WHERE title='우주론 입문'), 3, 28000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원26')), (SELECT book_id FROM tbl_book WHERE title='천문학의 기초'), 4, 30000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원27')), (SELECT book_id FROM tbl_book WHERE title='지리학 개론'), 1, 31000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='직원28')), (SELECT book_id FROM tbl_book WHERE title='고대사 연구'), 3, 25000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='도서관리자1')), (SELECT book_id FROM tbl_book WHERE title='중세사 개론'), 2, 27000),
-((SELECT order_id FROM tbl_order WHERE user_id=(SELECT user_id FROM tbl_user WHERE username='관리자')), (SELECT book_id FROM tbl_book WHERE title='근현대사'), 4, 30000);
+INSERT INTO tbl_order_item (order_id, book_id, quantity) VALUES
+(1, 1, 2),
+(1, 3, 4),
+(2, 1, 4),
+(2, 4, 4),
+(3, 1, 3),
+(3, 2, 2),
+(4, 1, 1),
+(4, 5, 1),
+(5, 1, 4),
+(5, 2, 4),
+(6, 10, 2),
+(7, 3, 1),
+(7, 4, 2),
+(8, 13, 4),
+(8, 14, 2),
+(9, 12, 3),
+(9, 13, 3),
+(9, 14, 3),
+(10, 1, 3),
+(10, 2, 4);
+
