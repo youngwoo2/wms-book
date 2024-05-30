@@ -8,8 +8,9 @@ import static com.sh.common.MyBatisTemplate.getSqlSession;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class MyBatisTemplateTest {
-    @DisplayName("SqlSession객체가 정상적으로 가져올 수 있다.")
+
     @Test
+    @DisplayName("SqlSessiom객체를 정상적으로 가져올 수 있다.")
     void test() {
         SqlSession sqlSession = getSqlSession();
         assertThat(sqlSession).isNotNull();
