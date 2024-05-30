@@ -11,18 +11,24 @@ public class UserView {
     Scanner sc = new Scanner(System.in);
     public void loginMenu(){
         System.out.println("🎈🎈로그인을 해주세요🎈🎈");
+        System.out.println("========================");
         System.out.print("▶ ID 입력해주세요 : ");
-        System.out.print("▶ Password 입력해주세요 : ");
         String id = sc.next();
+        System.out.print("▶ Password 입력해주세요 : ");
         String password = sc.next();
-        System.out.println("!⛳⛳로그인 성공!⛳⛳");
+        System.out.println("========================");
+        System.out.println("    ✅로그인 성공!✅");
+        System.out.println("========================");
 
         while(true) {
             String mainMenu = """
-                🥨메뉴를 선택해주세요🥨
+                 ✅메뉴를 선택해주세요✅
                     1. 도서 관리
                     2. 재고 관리
                     3. 주문 관리
+                    4. 프로그램 종료
+                ======================
+                    
                 """;
             System.out.println(mainMenu);
             String choice = sc.next();
@@ -39,7 +45,11 @@ public class UserView {
                     OrderView orderView = new OrderView();
                     orderView.orderMenu();
                     break;
-                default : break;
+                case "4" :
+                    return;
+                default :
+                    System.out.println("잘못된 입력입니다. 다시 입력해주세요😥");
+                break;
             }
         }
         
