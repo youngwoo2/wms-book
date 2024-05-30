@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.sh.common.MyBatisTemplate.getSqlSession;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 class MyBatisTemplateTest {
     @DisplayName("SqlSession객체가 정상적으로 가져올 수 있다.")
