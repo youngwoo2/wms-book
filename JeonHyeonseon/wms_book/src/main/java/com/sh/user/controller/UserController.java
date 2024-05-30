@@ -1,6 +1,6 @@
-package com.sh.login.controller;
+package com.sh.user.controller;
 
-import com.sh.login.model.service.UserService;
+import com.sh.user.model.service.UserService;
 
 public class UserController {
     private UserService userService = new UserService();
