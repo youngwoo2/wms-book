@@ -1,4 +1,4 @@
-package com.sh.account.model;
+package com.sh.order.model;
 
 public enum Status {
     주문확인중("주문확인중"),
