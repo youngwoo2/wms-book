@@ -1,14 +1,17 @@
 package com.sh.book.view;
 
+import com.sh.book.controller.InventoryController;
+
 import java.util.Scanner;
 
 public class InventoryView {
     private Scanner sc = new Scanner(System.in);
-//    private MainView mainView = new MainView();
+    InventoryController inventoryController = new InventoryController();
 
     public void inventoryMenu(){
         String menu = """
         =====================
+        재고 관리 메뉴를 선택하세요
         1. 재고 조회
         2. 재고 입고
         3. 재고 출고
@@ -21,10 +24,10 @@ public class InventoryView {
             System.out.println(menu);
             String choice = sc.next();
             switch(choice){
-                case "1" :  break;
-                case "2" :  break;
-                case "3" :  break;
-                case "4" :  break;
+                case "1" :  inventoryController.findInventory(); break;
+                case "2" :  inventoryController.inboundInventory(); break;
+                case "3" :  inventoryController.outboundInventory(); break;
+                case "4" :  inventoryController.moveInventory(); ;break;
                 case "0" :  return;
                 default:
                     System.out.println("잘못 입력하셨습니다.");

@@ -10,12 +10,10 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 
-public class BookDto {
+public class InventoryDto {
+    private int inventoryId;
     private int bookId;
-    private String title;
-    private String author;
-    private String description;
-    private double price;
-    private String category;
-    private LocalDateTime bookcreatedAt;
+    private int quantity;
+    private String location;
+    private LocalDateTime last_updated;
 }

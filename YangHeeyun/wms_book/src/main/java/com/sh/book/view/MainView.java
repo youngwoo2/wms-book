@@ -9,6 +9,15 @@ public class MainView {
     private OrderView orderView =  new OrderView();
     private InventoryView inventoryMenu = new InventoryView();
 
+    public void loginMenu(){
+        System.out.print("Id 입력 : ");
+        String id = sc.nextLine();
+        System.out.print("비밀번호 입력 : ");
+        String pw = sc.nextLine();
+        mainMenu();
+    }
+
+
     public void mainMenu() {
         String menu = """
             ======================
@@ -20,7 +29,7 @@ public class MainView {
             입력 : """;
 
         while(true){
-            System.out.println("[로그인 성공]");
+            System.out.println("[로그인 성공]\n");
             System.out.print(menu);
             String choice = sc.next();
             switch(choice){
