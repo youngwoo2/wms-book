@@ -24,6 +24,6 @@
         </environment>
     </environments>
     <mappers>
-        <!--        <mapper resource="sql/book/book-mapper.xml"/>-->
+        <mapper resource="sql/book/book-mapper.xml"/>
     </mappers>
 </configuration>
