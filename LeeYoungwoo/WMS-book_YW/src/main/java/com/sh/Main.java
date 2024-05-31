@@ -1,6 +1,6 @@
 package com.sh;
 
-import com.sh.login.view.LoginView;
+import com.sh.user.view.LoginView;
 
 public class Main {
     public static void main(String[] args) {

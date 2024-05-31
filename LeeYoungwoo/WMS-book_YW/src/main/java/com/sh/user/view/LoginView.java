@@ -1,4 +1,4 @@
-package com.sh.login.view;
+package com.sh.user.view;
 
 import java.util.Scanner;
 

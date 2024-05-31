@@ -1,4 +1,4 @@
-package com.sh.common;
+package com.sh.order.model;
 
 public enum OrderStatus {
     주문확인중,

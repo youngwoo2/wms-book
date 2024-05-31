@@ -1,4 +1,4 @@
-package com.sh.login.view;
+package com.sh.user.view;
 
 import com.sh.book.view.BookMenuView;
 import com.sh.inventory.view.InventoryMenuView;
@@ -9,6 +9,10 @@ import java.util.Scanner;
 public class MainMenuView {
     private Scanner sc = new Scanner(System.in);
     public void mainMenu() {
+        BookMenuView bookMenuView = new BookMenuView();
+        InventoryMenuView inventoryMenuView = new InventoryMenuView();
+        OrderMenuView orderMenuView = new OrderMenuView();
+
         String menu = """
                 ===================================================
                 ⚙️ 메인메뉴 ⚙️
@@ -23,9 +27,9 @@ public class MainMenuView {
             System.out.print(menu);
             String choice = sc.next();
             switch (choice) {
-                case "1" : new BookMenuView().bookMenu(); break;
-                case "2" : new InventoryMenuView().inventoryMenu(); break;
-                case "3" : new OrderMenuView().orderMenu(); break;
+                case "1" : bookMenuView.bookMenu(); break;
+                case "2" : inventoryMenuView.inventoryMenu(); break;
+                case "3" : orderMenuView.orderMenu(); break;
                 case "0" : return;
                 default :
                     System.out.println("잘못 입력하셨습니다...");
