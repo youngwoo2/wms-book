@@ -1,6 +1,6 @@
-package com.sh.book.controller;
+package com.sh.order.controller;
 
-import com.sh.book.service.OrderService;
+import com.sh.order.service.OrderService;
 
 public class OrderController {
     OrderService orderService = new OrderService();

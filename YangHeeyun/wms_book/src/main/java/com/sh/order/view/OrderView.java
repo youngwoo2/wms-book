@@ -1,6 +1,6 @@
-package com.sh.book.view;
+package com.sh.order.view;
 
-import com.sh.book.controller.OrderController;
+import com.sh.order.controller.OrderController;
 
 import java.util.Scanner;
 
@@ -11,7 +11,7 @@ public class OrderView {
     public void orderMenu(){
         String menu = """
         =====================
-        주문 관리 메뉴를 선택하세요
+        <주문 관리 메뉴를 선택>
         1. 주문 생성
         2. 주문 처리
         0. 뒤로가기

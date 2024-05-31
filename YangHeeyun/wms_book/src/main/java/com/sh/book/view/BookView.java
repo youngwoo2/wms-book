@@ -12,7 +12,7 @@ public class BookView {
     public void bookMenu(){
         String menu = """
         =====================
-        도서 관리 메뉴를 선택하세요
+        <도서 관리 메뉴 선택>
         1. 도서 정보 등록
         2. 도서 정보 수정
         3. 도서 목록 조회

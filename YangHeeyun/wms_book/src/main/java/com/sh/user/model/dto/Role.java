@@ -1,4 +1,4 @@
-package com.sh.book.model.dto;
+package com.sh.user.model.dto;
 
 public enum Role {
     admin, // 관리자

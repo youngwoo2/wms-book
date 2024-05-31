@@ -1,6 +1,6 @@
-package com.sh.book.view;
+package com.sh.inventory.view;
 
-import com.sh.book.controller.InventoryController;
+import com.sh.inventory.controller.InventoryController;
 
 import java.util.Scanner;
 
@@ -11,7 +11,7 @@ public class InventoryView {
     public void inventoryMenu(){
         String menu = """
         =====================
-        재고 관리 메뉴를 선택하세요
+        <재고 관리 메뉴 선택>
         1. 재고 조회
         2. 재고 입고
         3. 재고 출고

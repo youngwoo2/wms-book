@@ -1,6 +1,6 @@
-package com.sh.book.controller;
+package com.sh.inventory.controller;
 
-import com.sh.book.service.InventoryService;
+import com.sh.inventory.service.InventoryService;
 
 public class InventoryController {
     InventoryService inventoryService = new InventoryService();

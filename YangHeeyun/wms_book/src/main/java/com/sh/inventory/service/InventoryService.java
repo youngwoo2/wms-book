@@ -1,4 +1,4 @@
-package com.sh.book.service;
+package com.sh.inventory.service;
 
 public class InventoryService {
     public void findInventory() {

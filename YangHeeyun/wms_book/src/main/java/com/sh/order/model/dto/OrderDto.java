@@ -1,5 +1,6 @@
-package com.sh.book.model.dto;
+package com.sh.order.model.dto;
 
+import com.sh.book.model.dto.Status;
 import lombok.*;
 
 import java.time.LocalDateTime;
