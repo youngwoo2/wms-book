@@ -14,6 +14,7 @@ public class UserDto {
     private int userId;
     private String userName;
     private String password;
-    private UserRole role;
+//    private UserRole role;
+    private String role;
     private LocalDateTime createdAt;
 }
