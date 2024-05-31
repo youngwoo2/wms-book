@@ -1,10 +1,8 @@
-=======
 DROP TABLE IF EXISTS tbl_order_item CASCADE;
 DROP TABLE IF EXISTS tbl_order CASCADE;
 DROP TABLE IF EXISTS tbl_user CASCADE;
 DROP TABLE IF EXISTS tbl_inventory CASCADE;
 DROP TABLE IF EXISTS tbl_book CASCADE;
->>>>>>> 20605d0aee0aeae5c1e762b0c42ec86e058769c3:__data__/sql/wms_book_db-v2.sql
 
 CREATE TABLE tbl_user (
     user_id INT AUTO_INCREMENT PRIMARY KEY COMMENT '사용자 ID',
@@ -186,4 +184,3 @@ INSERT INTO tbl_order_item (order_id, book_id, quantity) VALUES
 (9, 14, 3),
 (10, 1, 3),
 (10, 2, 4);
-
