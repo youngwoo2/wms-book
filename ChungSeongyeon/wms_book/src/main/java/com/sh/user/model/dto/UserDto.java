@@ -1,8 +1,7 @@
 package com.sh.user.model.dto;
 
-import com.sh.user.model.enums.Roles;
 import lombok.*;
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -13,5 +12,5 @@ public class UserDto {
     private String username;
     private String password;
     private Roles role;
-    private Timestamp createdAt;
+    private LocalDate createdAt;
 }

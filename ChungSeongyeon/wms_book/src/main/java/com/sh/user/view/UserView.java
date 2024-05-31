@@ -18,7 +18,6 @@ public class UserView {
         String password = sc.nextLine(); // nextLine()로 비밀번호 입력
         System.out.println("⭕로그인 성공⭕");
 
-        while(true) {
             String mainMenu = """
                 [전체 메뉴 선택]
                  1. 도서 관리
@@ -26,6 +25,7 @@ public class UserView {
                  3. 주문 관리
                  0. 종료
                 """;
+        while(true) {
             System.out.println(mainMenu);
             String choice = sc.next();
             switch (choice) {

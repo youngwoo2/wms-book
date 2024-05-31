@@ -1,4 +1,4 @@
-package com.sh.user.model.enums;
+package com.sh.user.model.dto;
 
 public enum Roles {
     admin,
