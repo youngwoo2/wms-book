@@ -1,12 +1,12 @@
-package com.sh.order.model;
+package com.sh.order.model.dto;
 
 public enum Status {
-    주문확인중("주문확인중"),
-    배송준비중("배송준비중"),
-    발송완료("발송완료"),
-    배송중("배송중"),
-    배송완료("배송완료"),
-    주문취소("주문취소");
+    ORDER_CONFIRMING("주문확인중"),        // 주문확인중
+    PREPARING_FOR_SHIPMENT("배송준비중"),  // 배송준비중
+    SHIPPED("발송완료"),                 // 발송완료
+    IN_TRANSIT("배송중"),              // 배송중
+    DELIVERED("배송완료"),               // 배송완료
+    ORDER_CANCELLED("주문취소");          // 주문취소
 
     private final String value;
 

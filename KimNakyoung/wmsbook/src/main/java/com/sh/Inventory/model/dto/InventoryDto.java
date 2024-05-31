@@ -13,7 +13,7 @@ public class InventoryDto {
     private int bookId; // 도서코드
     private int quantity; // 수량
     private String location; // 창고위치
-    private Timestamp lastUpdated; // 마지막으로 업데이트한 시간
+    private Timestamp lastUpdated; // 처리날짜
 
     public InventoryDto() {
     }
