@@ -1,6 +1,7 @@
-package com.sh.user;
+package com.sh.user.view;
 
 import com.sh.book.view.BookView;
+//import com.sh.common.AuthManager;
 import com.sh.inventory.view.InventoryView;
 import com.sh.order.view.OrderView;
 
@@ -8,19 +9,19 @@ import java.util.Scanner;
 
 public class MainView {
     private Scanner sc = new Scanner(System.in);
-
     private BookView bookView = new BookView();
     private OrderView orderView =  new OrderView();
     private InventoryView inventoryMenu = new InventoryView();
 
+    // 메인 메뉴
     public void mainMenu() {
-        login();
         String menu = """
             ======================
+            <메인메뉴>
             1. 도서 관리
             2. 재고 관리
             3. 주문 관리
-            0. 종료
+            0. 뒤로가기
             ======================
             입력 : """;
 
@@ -36,13 +37,5 @@ public class MainView {
                     System.out.println("잘못 입력하셨습니다.");
             }
         }
-    }
-
-    public void login(){
-        System.out.print("Id 입력 : ");
-        String id = sc.nextLine();
-        System.out.print("비밀번호 입력 : ");
-        String pw = sc.nextLine();
-        System.out.println("[로그인 성공]\n");
     }
 }
