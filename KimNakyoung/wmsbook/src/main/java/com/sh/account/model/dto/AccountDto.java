@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class AccountDto {
     private int userId; // 계정아이디
-    private String username; // 계정이름
+    private String userName; // 계정이름
     private String password; // 계정 비밀번호 // DB에선 char이지만 JDBC는 Char 없음 그래서 String
     private  Role role; // 역할 (enum)
     private Timestamp createdAt; // 생성날짜

@@ -2,6 +2,8 @@ package com.sh.account.view;
 
 import com.sh.Inventory.view.InventoryView;
 import com.sh.account.controller.AccountController;
+import com.sh.account.model.dto.AccountDto;
+import com.sh.account.model.dto.Role;
 import com.sh.book.view.BookView;
 import com.sh.order.view.OrderView;
 
@@ -15,10 +17,46 @@ public class AccountView {
     BookView bookView = new BookView();
     InventoryView inventoryView = new InventoryView();
     OrderView orderView = new OrderView();
+    private AccountDto accountDto = null; // accountDto 객체 선언 이렇게 차이가 뭐지?
 
-    public void mainAccount() {
-        System.out.println("🔥도서재고관리에 오신걸 환영합니다🔥");
-        login(); // 로그인
+
+    public void loginView() {
+        // 사용자는 첫 로그인화면에서 id/password를 입력하고 로그인할 수 있습니다.
+        int userId ;
+        String password;
+        // Role이 enum타입이라서 매니저일때만 로그인 가능
+        do {
+            System.out.println("🔥도서재고관리에 오신걸 환영합니다🔥");
+            System.out.println("로그인 해주세요");
+            System.out.print("아이디 입력 :");
+            userId = sc.nextInt();
+            sc.nextLine(); // 개행버리기
+            System.out.print("비밀번호 입력 :");
+            password = sc.nextLine();
+            accountDto = accountController.login(userId,password);
+
+
+//            if(accountDto == null) {
+//                System.out.println("등록된 회원정보가 없습니다.");
+//            } else if (accountDto.getRole() != Role.manager) {
+//                System.out.println("관리자만 이용가능 합니다.");
+//
+//            }else {
+//                System.out.println(accountDto.getUserName() + "님 환영합니다." );
+//            }
+
+        } while ((accountDto == null || accountDto.getRole() != Role.manager));
+
+        // 로그인 성공시 메인메뉴 호출
+        mainMenuView();
+
+    }
+
+
+
+    public void mainMenuView() {
+
+
         String menu = """
                 =====================
                 1.도서관리
@@ -55,13 +93,4 @@ public class AccountView {
 
     }
 
-    public void login() {
-        System.out.println("로그인 해주세요");
-        System.out.print("아이디 입력 :");
-        String id = sc.next();
-        sc.nextLine(); // 개행버리기
-        System.out.print("비밀번호 입력 :");
-        String password = sc.nextLine();
-        System.out.println("로그인 성공!");
-    }
 }
