@@ -7,6 +7,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class UserDto {
     private int userId;
     private String username;
