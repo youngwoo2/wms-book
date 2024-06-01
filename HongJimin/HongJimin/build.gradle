@@ -27,7 +27,6 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.25.3'
 
-
 }
 
 test {
