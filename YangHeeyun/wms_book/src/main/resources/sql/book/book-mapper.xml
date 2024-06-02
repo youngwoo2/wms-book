@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sh.book.model.dao.BookMapper">
+    <select id = "findAllBook" resultType = "com.sh.book.model.dto.BookDto">
+        select
+            *
+        from
+            tbl_book;
+    </select>
+
+    <select id = "findBookByChoice" resultType = "com.sh.book.model.dto.BookDto">
+        select
+            *
+        from
+            tbl_book
+        <where>
+            <choose>
+                <when test="bookId != null">
+                    AND book_id = #{bookId}
+                </when>
+                <when test="title != null">
+                    AND title LIKE CONCAT('%', #{title}, '%')
+                </when>
+                <when test="author != null">
+                    AND author LIKE CONCAT('%', #{author}, '%')
+                </when>
+                <when test="price != null">
+                    AND price = #{price}
+                </when>
+                <when test="category != null">
+                    AND category LIKE CONCAT('%', #{category}, '%')
+                </when>
+            </choose>
+        </where>
+    </select>
+</mapper>

@@ -41,7 +41,7 @@ public class MainView {
                     if(AuthManager.islogin()){
                         mainMenu();
                         break; // logout하면 이리로 와서 break해야 로그인 메뉴를 다시 보여주나?
-                    }else //
+                    }else
                         break;
                 case "2" :
                     System.out.println("2번회원가입 중..."); //왜 main에서 로그아웃하면 이게 출력?

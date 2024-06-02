@@ -1,7 +1,6 @@
 package com.sh.user.view;
 
 import com.sh.common.AuthManager;
-import com.sh.user.model.dto.Role;
 import com.sh.user.model.dto.UserDto;
 
 public class ResultView {
