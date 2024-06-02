@@ -2,6 +2,8 @@ package com.sh.book.model.dto;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -14,4 +16,5 @@ public class BookDto {
     private String description; // 설명
     private int price; // 도서 가격
     private String category; // 도서 카테고리
+    private LocalDateTime createdAt; // 생성일시
 }
