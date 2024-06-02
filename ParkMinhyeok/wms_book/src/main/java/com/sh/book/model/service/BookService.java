@@ -15,6 +15,7 @@ public class BookService {
         SqlSession sqlSession = getSqlSession();
         BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
         List<BookDto> bookList = bookMapper.findAll();
+        sqlSession.close();
         return bookList;
     }
 }
