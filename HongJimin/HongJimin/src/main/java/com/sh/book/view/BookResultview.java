@@ -4,16 +4,16 @@ import com.sh.book.model.entity.Book;
 
 import java.util.List;
 
-public class Resultview {
+public class BookResultview {
     public static void displayBookList(List<Book> bookList) {
         if(bookList.isEmpty()) {
-            System.out.println("조회된 책이 없습니다.");
+            System.out.println("😅 조회된 책이 없습니다. 😅");
         }
     }
 
     public static void displayBook(Book book) {
         if(book == null) {
-            System.out.println(" 😅 조회된 책이 없습니다. 😅 ");
+            System.out.println("😅 조회된 책이 없습니다. 😅");
         }
         else {
             System.out.println("============================");
