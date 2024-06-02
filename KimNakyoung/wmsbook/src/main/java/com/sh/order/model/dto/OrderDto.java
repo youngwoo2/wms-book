@@ -3,8 +3,6 @@ package com.sh.order.model.dto;
 // 1. 주문 생성 (고객 주문 생성 (주문 번호, 고객 정보, 주문 도서, 수량, 배송지 정보 등))
 // 2. 주문 처리 ("주문 상태 관리 (주문 접수, 처리 중, 배송 중, 완료 등)")
 
-import com.sh.order.model.Status;
-git
 import java.sql.Timestamp;
 
 public class OrderDto {

@@ -24,7 +24,7 @@
         </environment>
     </environments>
     <mappers>
-<!--        <mapper resource="sql/menu/menu-mapper.xml"/> &lt;!&ndash; 쿼리 셋팅: resources 밑의 파일 경로를 작성 &ndash;&gt;-->
+        <mapper resource="sql/user/user-mapper.xml"/>
 <!--        <mapper resource="sql/book/book-mapper.xml"/>-->
     </mappers>
 </configuration>
