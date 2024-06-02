@@ -1,6 +1,5 @@
 package com.sh.order.model.dto;
 
-import com.sh.book.model.dto.Status;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -14,7 +13,7 @@ import java.time.LocalDateTime;
 public class OrderDto {
     private int orderId;
     private String ordererName;
-    private String orderrerAddress;
+    private String ordererAddress;
     private LocalDateTime order_date;
     private Status status;
 }
