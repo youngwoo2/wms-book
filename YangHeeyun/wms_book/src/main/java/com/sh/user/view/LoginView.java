@@ -1,5 +1,6 @@
 package com.sh.user.view;
 
+import com.sh.common.AuthManager;
 import com.sh.user.controller.UserController;
 import com.sh.user.model.dto.Role;
 import com.sh.user.model.dto.UserDto;
@@ -30,7 +31,6 @@ public class LoginView {
                     loginCheck(); // id,pw,role 검증
                     break;
                 case "2" :
-                    System.out.println("회원가입 중...");
                     // signUp();
                 case "0" : return;
                 default:
@@ -43,13 +43,14 @@ public class LoginView {
         // DB의 회원정보 검증
         // DB에 id,pw가 일치하는 정보가 없거나, Role이 manager가 아닌 경우 로그인 실패
         do{
-            System.out.print(">ID 입력 : ");
+            System.out.print("> ID 입력 : ");
             int id = sc.nextInt();
             sc.nextLine();
-            System.out.print("Password 입력 : ");
-            String pw = sc.next();
-            userDto = userController.login(id,pw);
-        }while (userDto == null || userDto.getRole() != Role.manager);
+            System.out.print("> Password 입력 : ");
+            String password = sc.next();
+            userDto = userController.login(id,password);
+        } while(AuthManager.islogin());
+//        while (userDto == null || userDto.getRole() != Role.manager);
 
         // 로그인 성공시 메인메뉴 호출
         System.out.println();
