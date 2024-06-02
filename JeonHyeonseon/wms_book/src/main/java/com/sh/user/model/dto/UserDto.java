@@ -15,4 +15,9 @@ public class UserDto {
     private String userName; // 사용자 이름
     private Role role; // 사용자 역할
     private LocalDateTime createdAt; // 생성 일시
+
+    public UserDto(int userId, String password) {
+        this.userId = userId;
+        this.password = password;
+    }
 }

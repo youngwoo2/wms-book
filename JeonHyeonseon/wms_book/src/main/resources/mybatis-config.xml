@@ -23,7 +23,7 @@
             </dataSource>
         </environment>
     </environments>
-<!--    <mappers>-->
-<!--        -->
-<!--    </mappers>-->
+    <mappers>
+        <mapper resource="sql/user/user-mapper.xml"/>
+    </mappers>
 </configuration>
