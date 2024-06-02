@@ -18,4 +18,27 @@ public class BookService {
         sqlSession.close();
         return bookList;
     }
+
+    public BookDto findByBookId(int bookId) {
+        SqlSession sqlSession = getSqlSession();
+        BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+        BookDto book = bookMapper.findByBookId(bookId);
+        sqlSession.close();
+        return book;
+    }
+
+    public BookDto findByBookTitle(String title) {
+        SqlSession sqlSession = getSqlSession();
+        BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+        BookDto book = bookMapper.findByBookTitle(title);
+        sqlSession.close();
+        return book;
+    }
+
+    public BookDto findByAuthor(String author) {
+        SqlSession sqlSession = getSqlSession();
+        BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+        BookDto book = bookMapper.findByBookAuthor(author);
+        return book;
+    }
 }

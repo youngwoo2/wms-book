@@ -8,5 +8,36 @@
         <result column="created_at" property="createdAt"/>
     </resultMap>
     <select id="findAll" resultMap="bookDtoMap">
+        select
+            *
+        from
+            tbl_book
+    </select>
+
+    <select id="findByBookId" resultMap="bookDtoMap">
+        select
+            *
+        from
+            tbl_book
+        where
+            book_id = #{bookId}
+    </select>
+
+    <select id="findByBookTitle" resultMap="bookDtoMap">
+        select
+            *
+        from
+            tbl_book
+        where
+            title = #{title}
+    </select>
+
+    <select id="findByBookAuthor" resultMap="bookDtoMap">
+        select
+            *
+        from
+            tbl_book
+        where
+            author = #{author}
     </select>
 </mapper>
