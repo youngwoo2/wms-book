@@ -1,8 +1,7 @@
 package com.sh.order.model.dto;
 
-import com.sh.order.model.enums.OrderableStatus;
 import lombok.*;
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -12,6 +11,6 @@ public class OrderDto {
     private int orderId;
     private String ordererName;
     private String ordererAddress;
-    private Timestamp orderDate;
+    private LocalDate orderDate;
     private OrderableStatus status;
 }

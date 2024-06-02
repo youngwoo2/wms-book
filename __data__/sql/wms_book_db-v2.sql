@@ -23,7 +23,7 @@ CREATE TABLE tbl_book (
 ) COMMENT '도서 테이블';
 
 CREATE TABLE tbl_inventory (
-    inventory_id INT AUTO_INCREMENT PRIMARY KEY COMMENT '재고 ID',
+    inventory_id INT AUTO_INCREMENT PRIMARY KEY COMMENT '재고 ID', 
     book_id INT NOT NULL COMMENT '도서 ID',
     quantity INT NOT NULL COMMENT '수량',
     location VARCHAR(255) COMMENT '위치',
@@ -184,4 +184,3 @@ INSERT INTO tbl_order_item (order_id, book_id, quantity) VALUES
 (9, 14, 3),
 (10, 1, 3),
 (10, 2, 4);
-

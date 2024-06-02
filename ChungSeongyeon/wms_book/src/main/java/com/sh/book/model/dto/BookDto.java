@@ -13,7 +13,7 @@ public class BookDto {
     private String title;
     private String author;
     private String description;
-    private BigDecimal price;
+    private int price;
     private String category;
     private Timestamp createdAt;
 }
