@@ -1,4 +1,4 @@
-package sh.common;
+package com.sh.common;
 
 import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.DisplayName;

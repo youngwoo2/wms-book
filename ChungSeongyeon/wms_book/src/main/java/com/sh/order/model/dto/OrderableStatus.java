@@ -1,4 +1,4 @@
-package com.sh.order.model.enums;
+package com.sh.order.model.dto;
 
 public enum OrderableStatus {
     주문확인중,
