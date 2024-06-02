@@ -1,6 +1,6 @@
 package com.sh.order.model.dto;
 
-import com.sh.common.OrderStatus;
+import com.sh.order.model.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
