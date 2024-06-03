@@ -118,11 +118,10 @@ public class BookView {
         bookController.findByTitle(title);
     }
 
-    private int inputBookId() {
+    private void inputBookId() {
         System.out.print("도서 아이디 조회 : ");
         int bookId = sc.nextInt();
         bookController.findByBookId(bookId);
-        return sc.nextInt();
     }
 
 }
