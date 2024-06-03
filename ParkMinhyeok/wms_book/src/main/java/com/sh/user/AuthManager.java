@@ -9,10 +9,8 @@ public class AuthManager {
     public static boolean isLogin() {
         return loginUser != null;
     }
-    public static void login(UserDto user) {
-        if (user != null) {
-        loginUser = userController.handleLogin(user);
-        }
+    public static void login(int id,String password) {
+        loginUser = userController.handleLogin(id, password);
     }
     public static UserDto getLoginUser() {
         return loginUser;
