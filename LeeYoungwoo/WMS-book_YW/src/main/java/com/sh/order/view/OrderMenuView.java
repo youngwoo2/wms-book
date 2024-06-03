@@ -1,6 +1,6 @@
 package com.sh.order.view;
 
-import com.sh.login.view.MainMenuView;
+import com.sh.user.view.MainMenuView;
 
 import java.util.Scanner;
 
@@ -22,7 +22,7 @@ public class OrderMenuView {
             switch (choice) {
                 case "1" : break;
                 case "2" : break;
-                case "0" : new MainMenuView().mainMenu(); return;
+                case "0" : return;
                 default :
                     System.out.println("잘못 입력하셨습니다...");
             }
