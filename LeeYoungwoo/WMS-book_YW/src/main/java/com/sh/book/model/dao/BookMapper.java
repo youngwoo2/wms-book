@@ -15,4 +15,9 @@ public interface BookMapper {
 
     List<BookDto> searchMenu(SearchCriteria searchCriteria);
 
+    int insertBook(BookDto bookDto);
+
+    int updateBook(BookDto bookDto);
+
+    int deleteBook(int bookId);
 }

@@ -73,4 +73,16 @@ public class BookResultView {
 
         }
     }
+
+    public static void displayInsertBook(int result) {
+        System.out.println("> 📢📢📢 " + "도서 등록 " + (result > 0 ? "성공!" : "실패!") + " 📢📢📢");
+    }
+
+    public static void displayUpdateBook(int result) {
+        System.out.println("> 📢📢📢 " + "도서 수정 " + (result > 0 ? "성공!" : "실패!") + " 📢📢📢");
+    }
+
+    public static void displayDeleteBook(int result) {
+        System.out.println("> 📢📢📢 " + "도서 삭제 " + (result > 0 ? "성공!" : "실패!") + " 📢📢📢");
+    }
 }

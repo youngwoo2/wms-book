@@ -23,4 +23,20 @@ public class BookController {
         List<BookDto> bookList = bookService.searchMenu(searchCriteria);
         BookResultView.displaySearchBook(bookList);
     }
+
+    public void insertBook(BookDto bookDto) {
+        int result = bookService.insertBook(bookDto);
+        BookResultView.displayInsertBook(result);
+
+    }
+
+    public void updateBook(BookDto bookDto) {
+        int result = bookService.updateBook(bookDto);
+        BookResultView.displayUpdateBook(result);
+    }
+
+    public void deleteBook(int bookId) {
+        int result = bookService.deleteBook(bookId);
+        BookResultView.displayDeleteBook(result);
+    }
 }
