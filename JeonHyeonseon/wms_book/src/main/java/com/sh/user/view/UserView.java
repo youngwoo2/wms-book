@@ -63,7 +63,7 @@ public class UserView {
                 =====================
                 입력 : """;
         while(true) {
-            System.out.println(menu);
+            System.out.print(menu);
             String choice = sc.next();
             switch (choice) {
                 case "1" :
