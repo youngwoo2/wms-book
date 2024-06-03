@@ -12,4 +12,11 @@ public interface BookMapper {
     BookDto findByBookTitle(String title);
 
     BookDto findByBookAuthor(String author);
+
+    int insertBook(BookDto book);
+
+    int updateBook(BookDto bookId);
+
+    int deleteBook(int bookId);
+    int deleteInventoryByBookId(int bookId);
 }

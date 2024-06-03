@@ -40,4 +40,33 @@
         where
             author = #{author}
     </select>
+
+    <insert id="insertBook" useGeneratedKeys="true" keyProperty="bookId">
+        insert into
+            tbl_book
+        values (
+            null, #{title}, #{author}, #{description}, #{price}, #{category}, #{createdAt}
+        )
+    </insert>
+
+    <update id="updateBook">
+        update
+            tbl_book
+        set
+            title = #{title}, author = #{author}, description = #{description}, price = #{price}, category = #{category}
+        where
+            book_id = #{bookId}
+    </update>
+
+    <delete id="deleteInventoryByBookId">
+        DELETE FROM tbl_inventory
+        WHERE book_id = #{bookId}
+    </delete>
+
+    <delete id="deleteBook">
+        delete from
+            tbl_book
+        where
+            book_id = #{bookId}
+    </delete>
 </mapper>

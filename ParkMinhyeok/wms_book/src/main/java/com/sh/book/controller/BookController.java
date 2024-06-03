@@ -27,4 +27,13 @@ public class BookController {
         BookDto book = bookService.findByAuthor(author);
         System.out.println(book);
     }
+    public void insertBook(BookDto book) {
+        int result = bookService.insertBook(book);
+    }
+    public void updateBook(BookDto book) {
+        int result = bookService.updateBook(book);
+    }
+    public void deleteBook(int bookId) {
+        int result = bookService.deleteBook(bookId);
+    }
 }

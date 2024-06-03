@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.sh.common.MyBatisTemplate.getSqlSession;
@@ -74,5 +75,49 @@ class BookMapperTest {
         assertNotNull(book);
         assertEquals(author, book.getAuthor());
 //        System.out.println(book);
+    }
+    @DisplayName("Test insert Book")
+    @Test
+    void insertBook() {
+        // given
+        BookDto book = new BookDto();
+        book.setTitle("테스트");
+        book.setAuthor("테스트 저자");
+        book.setDescription("테스트 테스트");
+        book.setPrice(12000);
+        book.setCategory("역사");
+        book.setCreatedAt(LocalDateTime.now());
+        // when
+        int result = bookMapper.insertBook(book);
+        System.out.println(result);
+        // then
+        assertEquals(result, 1);
+    }
+    @DisplayName("Test update book")
+    @Test
+    void updateBook() {
+        int id = 1;
+        // given
+        BookDto book = new BookDto();
+        book.setBookId(id);
+        book.setTitle("테스트");
+        book.setAuthor("테스트 저자");
+        book.setDescription("테스트 테스트");
+        book.setPrice(12000);
+        book.setCategory("역사");
+        // when
+        int result = bookMapper.updateBook(book);
+        // then
+        assertEquals(result, 1);
+    }
+    @DisplayName("Test delete book")
+    @Test
+    void deleteBook() {
+        // given
+        int bookId = 1;
+        // when
+        int result = bookMapper.deleteBook(bookId);
+        // then
+        assertEquals(result, 1);
     }
 }
