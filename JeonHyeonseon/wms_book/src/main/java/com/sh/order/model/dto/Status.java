@@ -1,9 +1,10 @@
 package com.sh.order.model.dto;
 
 public enum Status {
-    pending, // 주문 확인중
-    preparing, // 배송 준비중
-    shipped, // 발송 완료
-    delivered, // 배송 완료
-    cancelled // 주문 취소
+    주문확인중,
+    배송준비중,
+    발송완료,
+    배송중,
+    배송완료,
+    주문취소
 }

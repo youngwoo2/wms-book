@@ -1,7 +1,6 @@
 package com.sh.book.model.dto;
 
 import lombok.*;
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 @Getter
@@ -16,4 +15,13 @@ public class BookDto {
     private int price;
     private String category;
     private Timestamp createdAt;
+
+
+@Override
+public String toString() {
+    return String.format("책정보(책ID=%d, 제목='%s', 저자='%s', 요약='%s', 가격=%d, 카테고리='%s', 등록일자=%s)",
+            bookId, title, author, description, price, category, createdAt);
+
+    }
+
 }
