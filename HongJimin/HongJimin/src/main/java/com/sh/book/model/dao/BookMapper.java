@@ -20,4 +20,6 @@ public interface BookMapper {
     int insertBook(Book book);
 
     int updateBook(Book book);
+
+    int deleteBook(int bookId);
 }

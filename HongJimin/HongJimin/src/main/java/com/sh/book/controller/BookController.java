@@ -21,8 +21,9 @@ public class BookController {
         BookResultview.displayResult("도서 정보 수정", result);
     }
 
-    public void deleteBook() {
-        bookService.deleteBook();
+    public void deleteBook(int bookId) {
+        int result = bookService.deleteBook(bookId);
+        BookResultview.displayResult("도서 삭제", result);
     }
 
     public void findAllBook() {
