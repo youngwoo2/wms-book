@@ -8,17 +8,23 @@ import java.util.List;
 public class BookController {
     private BookService bookService = new BookService();
 
-    public List<BookDto> findAll() {
-        return bookService.findAll();
+    public void findAll() {
+        List<BookDto> list = bookService.findAll();
+        for (BookDto book : list) {
+            System.out.println(book);
+        }
     }
-    public BookDto findByBookId(int bookId) {
-        return bookService.findByBookId(bookId);
+    public void findByBookId(int bookId) {
+        BookDto book = bookService.findByBookId(bookId);
+        System.out.println(book);
     }
     // 도서명, 저자, 카테고리, 가격 등을 기준으로 검색할수 있습니다.
-    public BookDto findByBookTitle(String title) {
-        return bookService.findByBookTitle(title);
+    public void findByBookTitle(String title) {
+        BookDto book = bookService.findByBookTitle(title);
+        System.out.println(book);
     }
-    public BookDto findByAuthor(String author) {
-        return bookService.findByAuthor(author);
+    public void findByAuthor(String author) {
+        BookDto book = bookService.findByAuthor(author);
+        System.out.println(book);
     }
 }
