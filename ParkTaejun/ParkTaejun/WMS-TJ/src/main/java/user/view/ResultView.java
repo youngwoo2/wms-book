@@ -78,4 +78,20 @@ public class ResultView {
             }
         }
     }
+
+    public static void displayDeletedBook(int result) {
+        if (result != 0){
+            System.out.println("책 삭제 성공");
+        }else {
+            System.out.println("책 삭제 실패");
+        }
+    }
+
+    public static void displayUdateResult(String type, int result) {
+        System.out.println(">" + type + " " + (result>0 ? "🤗성공!!🤗" : "🤗실패!!🤗"));
+    }
+
+    public static void displayInsertBook(String type, int result) {
+        System.out.println(">" + type + " " + (result > 0 ? "🤗성공!!🤗" : "🤗실패🤗"));
+    }
 }
