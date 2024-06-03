@@ -5,7 +5,7 @@ import com.sh.user.model.dto.UserDto;
 
 import java.util.List;
 
-public class ResultView {
+public class UserResultView {
     public static void displayLoginMenu(UserDto userDto) {
         if (userDto == null) {
             System.out.println("❌ 등록되지 않은 사용자입니다. ❌");
@@ -16,7 +16,5 @@ public class ResultView {
         }
     }
 
-    public static void displayBookList(List<BookDto> list) {
 
-    }
 }

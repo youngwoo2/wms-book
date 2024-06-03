@@ -1,5 +1,6 @@
 package com.sh.user.view;
 
+import com.sh.common.AuthManager;
 import com.sh.user.controller.UserController;
 import com.sh.user.model.dto.UserDto;
 
@@ -22,7 +23,9 @@ public class LoginView {
             userDto = userController.login(userId, password);
         } while (userDto == null || !userDto.getRole().equals("manager"));
 
-        // 로그인 성공시 메인메뉴 호출
+        // 로그인 성공시 AuthManager에 로그인정보 담고, 메인메뉴 호출
+        AuthManager.login(userDto);
+
         MainMenuView mainMenuView = new MainMenuView();
         mainMenuView.mainMenu();
     }
