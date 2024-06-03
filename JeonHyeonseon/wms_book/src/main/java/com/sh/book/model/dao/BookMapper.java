@@ -8,4 +8,12 @@ public interface BookMapper {
     List<BookDto> findAllBooks();
 
     BookDto findByBookId(int bookId);
+
+    BookDto findByTitle(String title);
+
+    BookDto findByAuthor(String author);
+
+    BookDto findByCategory(String category);
+
+    BookDto findByPrice(int price);
 }

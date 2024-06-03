@@ -10,11 +10,10 @@ public class ResultBookView {
             System.out.println("도서 목록에 해당되지 않습니다.");
         } else {
             System.out.println("------------------------------------------");
-            System.out.printf("%s\t %s\t %s\t %s\t %s\t %s\t %s\t",
-                    "BookID", "Title", "Author", "Description", "Price", "Category", "CreatedAt");
+            System.out.printf("%s\t %s\t %s\t %s\t %s\t %s\t %s\n", "BookID", "Title", "Author", "Description", "Price", "Category", "CreatedAt");
             System.out.println("------------------------------------------");
             for (BookDto bookDto : list) {
-                System.out.printf("%d\t %s\t %s\t %s\t %d\t %s\t",
+                System.out.printf("%d\t %s\t %s\t %s\t %d\t %s\n",
                         bookDto.getBookId(),
                         bookDto.getTitle(),
                         bookDto.getAuthor(),

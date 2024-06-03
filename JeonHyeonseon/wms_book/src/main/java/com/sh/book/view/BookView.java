@@ -1,9 +1,7 @@
 package com.sh.book.view;
 
 import com.sh.book.controller.BookController;
-import com.sh.book.model.dto.BookDto;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class BookView {
@@ -55,10 +53,10 @@ public class BookView {
                     bookController.findAllBooks();
                     break;
                 case "2" :
-                    bookController.findByBookId(inputBookId());
+                    inputBookId();
                     break;
                 case "3" :
-                    bookController.searchBooks(inputFilterBook());
+                    inputFilterBook();
                     break;
                 case "4" : return;
                 default:
@@ -82,25 +80,48 @@ public class BookView {
         System.out.print(menu);
         String choice = sc.next();
         switch (choice) {
-            case "1" :
-                findByTitle();
-                break;
-            case "2" : break;
-            case "3" : break;
-            case "4" : break;
-            case "0" : return;
-            default:
-                System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
-        }
+            case "1" -> inputTitle();
+            case "2" -> inputAuthor();
+            case "3" -> inputCategory();
+            case "4" -> inputPrice();
+            default -> {
+                return;
+            }
+        };
     }
 
-    private String findByTitle() {
-        System.out.println("검색할 제목 : ");
-        return sc.next();
+    private void inputPrice() {
+        System.out.println("가격 : ");
+        int price = sc.nextInt();
+        sc.nextLine();
+        bookController.findByPrice(price);
+    }
+
+    private void inputCategory() {
+        System.out.println("카테고리 : ");
+        String category = sc.next();
+        sc.nextLine();
+        bookController.findByCategory(category);
+    }
+
+    private void inputAuthor() {
+        System.out.print("저자 : ");
+        String author = sc.next();
+        sc.nextLine();
+        bookController.findByAuthor(author);
+    }
+
+    private void inputTitle() {
+        System.out.print("제목 : ");
+        String title = sc.next();
+        sc.nextLine();
+        bookController.findByTitle(title);
     }
 
     private int inputBookId() {
-        System.out.print("조회할 도서 아이디 : ");
+        System.out.print("도서 아이디 조회 : ");
+        int bookId = sc.nextInt();
+        bookController.findByBookId(bookId);
         return sc.nextInt();
     }
 

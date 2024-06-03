@@ -64,4 +64,47 @@ class BookMapperTest {
         assertThat(book.getPrice()).isNotZero().isPositive();
         assertThat(book.getCategory()).isNotNull();
     }
+
+    @DisplayName("도서명으로 검색")
+    @Test
+    void findByTitle() {
+        // given
+        String title = "데이터베이스 관리";
+        // when
+        BookDto bookDto = bookMapper.findByTitle(title);
+        // then
+        assertThat(bookDto).isNotNull();
+        assertThat(bookDto.getTitle()).isEqualTo(title);
+    }
+
+    @DisplayName("저자로 검색")
+    @Test
+    void findByAuthor() {
+        // given
+        String author = "김철수";
+        // when
+        BookDto bookDto = bookMapper.findByAuthor(author);
+        // then
+        assertThat(bookDto).isNotNull();
+        assertThat(bookDto.getAuthor()).isEqualTo(author);
+    }
+
+    @DisplayName("카테고리로 검색")
+    @Test
+    void findByCategory() {
+        // given
+        String category = "인공지능";
+        // when
+        BookDto bookDto = bookMapper.findByCategory(category);
+        // then
+        assertThat(bookDto).isNotNull();
+        assertThat(bookDto.getCategory()).isEqualTo(category);
+    }
+
+    @DisplayName("가격으로 검색")
+    @Test
+    void findByPrice() {
+        // given
+//        int price =
+    }
 }

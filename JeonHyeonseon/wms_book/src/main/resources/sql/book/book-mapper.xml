@@ -17,4 +17,36 @@
         where
             book_id = #{bookId}
     </select>
+    <select id="findByTitle" resultType="bookDto">
+        select
+            *
+        from
+            tbl_book
+        where
+            title = #{title}
+    </select>
+    <select id="findByAuthor" resultType="bookDto">
+        select
+            *
+        from
+            tbl_book
+        where
+            author = #{author}
+    </select>
+    <select id="findByCategory" resultType="bookDto">
+        select
+            *
+        from
+            tbl_book
+        where
+            category = #{category}
+    </select>
+    <select id="findByPrice" resultType="bookDto">
+        select
+            *
+        from
+            tbl_book
+        where
+            price = #{price}
+    </select>
 </mapper>
