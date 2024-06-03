@@ -66,4 +66,19 @@ public class BookController {
             e.printStackTrace();
         }
     }
+
+    public void insertBook(BookDto bookDto) {
+        int result = bookService.insertBook(bookDto);
+        ResultBookView.displayResult("도서 등록", result);
+    }
+
+    public void updateBook(BookDto bookDto) {
+        int result = bookService.updateBook(bookDto);
+        ResultBookView.displayResult("도서 수정", result);
+    }
+
+    public void deleteBook(int bookId) {
+        int result = bookService.deleteBook(bookId);
+        ResultBookView.displayResult("도서 삭제", result);
+    }
 }

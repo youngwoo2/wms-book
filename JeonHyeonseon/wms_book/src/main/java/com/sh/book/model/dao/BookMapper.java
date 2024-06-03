@@ -16,4 +16,10 @@ public interface BookMapper {
     BookDto findByCategory(String category);
 
     BookDto findByPrice(int price);
+
+    int insertBook(BookDto bookDto);
+
+    int updateBook(BookDto bookDto);
+
+    int deleteBook(int bookId);
 }
