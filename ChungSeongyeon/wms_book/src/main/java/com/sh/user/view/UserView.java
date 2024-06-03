@@ -61,7 +61,6 @@ public class UserView {
             String password = sc.nextLine(); // nextLine()로 비밀번호 입력
             System.out.println("> 직책 입력 : ");
             Roles role = Roles.valueOf(sc.next());
-            System.out.println("⭕로그인 성공⭕");
             System.out.println(); // 개행 추가
 
             UserDto userDto = new UserDto();
@@ -74,8 +73,10 @@ public class UserView {
 
             if (loginSuccess) {
                 // 로그인 정보를 AuthManager에 등록
+                System.out.println("⭕로그인 성공⭕");
                 AuthManager.login(userDto);
                 mainMenu();
+
             } else {
                 System.out.println("❌로그인 실패❌");
             }
