@@ -1,4 +1,4 @@
-package practice;
+package com.sh.common;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 
-public class MyBatisTemplateTest {
+public class MyBatisTemplate {
     // 프로그램당 하나의 객체를 사용, static초기화 이후 getSqlSession 재사용
     private static SqlSessionFactory sqlSessionFactory;
     static {
