@@ -13,10 +13,11 @@ import java.time.LocalDateTime;
 @Setter
 public class Book {
     private int bookId;
-    private String bookTitle;
+    private String title;
     private String author;
     private String description;
     private int price;
     private String category;
     private LocalDateTime bookCreatedAt;
+
 }
