@@ -50,6 +50,27 @@ public class BookResultView {
     }
 
     public static void displaySearchBook(List<BookDto> bookList) {
-        System.out.println(bookList);
+//        System.out.println(bookList);
+
+        if (bookList.isEmpty()) {
+            System.out.println("😅😅😅 조회된 목록이 없습니다. 😅😅😅");
+        } else {
+            System.out.println("-------------------------------------------------------------------------------------------");
+            System.out.printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n", "도서 ID", "도서 제목", "저자", "설명", "가격", "카테고리", "생성 일시");
+            System.out.println("-------------------------------------------------------------------------------------------");
+            for(BookDto bookDto : bookList) {
+                System.out.printf("%d\t%s\t%s\t%s\t%d\t%s\t%s\n",
+                        bookDto.getBookId(),
+                        bookDto.getTitle(),
+                        bookDto.getAuthor(),
+                        bookDto.getDescription(),
+                        bookDto.getPrice(),
+                        bookDto.getCategory(),
+                        bookDto.getCreatedAt()
+                );
+            }
+            System.out.println("-------------------------------------------------------------------------------------------");
+
+        }
     }
 }

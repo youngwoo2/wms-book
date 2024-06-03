@@ -59,12 +59,11 @@ public class BookMenuView {
                 case "2" -> inputAuthor();
                 case "3" -> inputCategory();
                 case "4" -> inputPriceRange();
-                case "0" -> bookMenuReturn(); // 구현해야됨
                 default -> null;
             };
             if (searchCriteria != null) {
                 bookController.searchMenu(searchCriteria);
-            } else if (choice == "0") {
+            } else if (choice.equals("0")) {
                 return;
             } else {
                 System.out.println("> 잘못 입력하셨습니다.");
