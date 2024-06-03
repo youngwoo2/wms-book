@@ -1,6 +1,7 @@
 package com.sh.book.view;
 
 import com.sh.book.controller.BookController;
+import com.sh.book.model.entity.Book;
 
 import java.util.Scanner;
 
@@ -23,23 +24,23 @@ public class BookView {
         System.out.print(bookMenu);
         String choice = sc.next();
         switch (choice) {
-            case "1" :
+            case "1":
                 // 1. 도서 등록
-                bookController.insertBook();
+                insertBook();
                 break;
-            case "2" :
+            case "2":
                 // 2. 도서 조회
                 findBookMenu();
                 break;
-            case "3" :
+            case "3":
                 // 3. 도서 수정
-                bookController.updateBook();
+                bookController.updateBook(updateBook());
                 break;
-            case "4" :
+            case "4":
                 // 4. 도서 삭제
                 bookController.deleteBook();
                 break;
-            case "5" :
+            case "5":
                 // 5. 뒤로 가기
                 return;
             default:
@@ -47,7 +48,7 @@ public class BookView {
         }
     }
 
-    public void findBookMenu(){
+    public void findBookMenu() {
         String findBookMenu = """
                 ===============================
                 📖 도서 조회 메뉴를 선택해주세요 📖
@@ -61,17 +62,23 @@ public class BookView {
         System.out.print(findBookMenu);
         String choice = sc.next();
         switch (choice) {
-            case "1" : bookController.findAllBook(); break;
-            case "2" : findBookById(); break;
-            case "3" : findBookByCategory(); break;
-            case "4" : return;
+            case "1":
+                bookController.findAllBook();
+                break;
+            case "2":
+                findBookById();
+                break;
+            case "3":
+                findBookByCategory();
+                break;
+            case "4":
+                return;
             default:
                 System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
         }
     }
 
-
-    public void findBookById(){
+    public void findBookById() {
         System.out.println("▶️ Book Id 입력 : ");
         int bookId = sc.nextInt();
         bookController.findBookByBookId(bookId);
@@ -92,26 +99,66 @@ public class BookView {
         System.out.println(menu);
         int choice = sc.nextInt();
         switch (choice) {
-            case 1 :
+            case 1:
                 System.out.print("▶ 도서 명을 입력해주세요 : ");
                 String title = sc.next();
-                bookController.findByTitle(title); break;
-            case 2 :
+                bookController.findByTitle(title);
+                break;
+            case 2:
                 System.out.print("▶ 저자를 입력해주세요 : ");
                 String author = sc.next();
-                bookController.findByAuthor(author); break;
-            case 3 :
+                bookController.findByAuthor(author);
+                break;
+            case 3:
                 System.out.print("▶ 카테고리를 입력해주세요 : ");
                 String category = sc.next();
-                bookController.findByCategory(category); break;
-            case 4 :
+                bookController.findByCategory(category);
+                break;
+            case 4:
                 System.out.print("▶ 가격을 입력해주세요 ");
                 int price = sc.nextInt();
-                bookController.findBookByPrice(price); break;
-            case 5 :
+                bookController.findBookByPrice(price);
+                break;
+            case 5:
                 return;
             default:
                 System.out.println("잘못된 입력입니다. 다시 입력해주세요");
         }
+    }
+
+    private void insertBook() {
+        System.out.print("▶ 도서 명을 입력해주세요 : ");
+        String title = sc.nextLine();
+        System.out.print("▶ 저자를 입력해주세요 : ");
+        String author = sc.next();
+        sc.nextLine();
+        System.out.print("▶ 설명을 입력해주세요 ");
+        String description = sc.nextLine();
+        System.out.print("▶ 가격을 입력해주세요 ");
+        int price = sc.nextInt();
+        System.out.print("▶ 카테고리를 입력해주세요 : ");
+        String category = sc.next();
+        Book book = new Book(0, title, author, description, price, category, null);
+        bookController.insertBook(book);
+    }
+
+    private Book updateBook() {
+        System.out.println("===========================");
+        System.out.println("🧆 수정할 도서 정보를 작성해주세요");
+        System.out.println("===========================");
+        System.out.println("▶ 수정할 도서ID : ");
+        int bookId = sc.nextInt();
+        System.out.print("▶ 도서 명을 입력해주세요 : ");
+        String title = sc.nextLine();
+        System.out.print("▶ 저자를 입력해주세요 : ");
+        String author = sc.next();
+        sc.nextLine();
+        System.out.print("▶ 설명을 입력해주세요 ");
+        String description = sc.nextLine();
+        System.out.print("▶ 가격을 입력해주세요 ");
+        int price = sc.nextInt();
+        System.out.print("▶ 카테고리를 입력해주세요 : ");
+        String category = sc.next();
+        return new Book(bookId, title, author, description, price, category, null);
     }
 }

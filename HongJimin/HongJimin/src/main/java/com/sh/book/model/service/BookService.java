@@ -9,11 +9,34 @@ import java.util.List;
 import static com.sh.common.MyBatisTemplate.getSqlSession;
 
 public class BookService {
-    public void insertBook() {
+    public int insertBook(Book book) {
+        SqlSession sqlSession = getSqlSession();
+        BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+        try {
+            int result = bookMapper.insertBook(book);
+            sqlSession.commit();
+            return result;
+        } catch (Exception e) {
+            sqlSession.rollback();
+            throw new RuntimeException(e);
+        } finally {
+            sqlSession.close();
+        }
     }
 
-    public void updateBook() {
-
+    public int updateBook(Book book) {
+        SqlSession sqlSession = getSqlSession();
+        BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+        try {
+            int result = bookMapper.updateBook(book);
+            sqlSession.commit();
+            return result;
+        } catch (Exception e) {
+            sqlSession.rollback();
+            throw new RuntimeException(e);
+        }finally {
+            sqlSession.close();
+        }
     }
 
     public void deleteBook() {

@@ -16,4 +16,8 @@ public interface BookMapper {
     List<Book> findByCategory(String category);
 
     List<Book> findBookByPrice(int price);
+
+    int insertBook(Book book);
+
+    int updateBook(Book book);
 }

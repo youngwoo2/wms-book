@@ -10,12 +10,15 @@ import java.util.List;
 
 public class BookController {
     BookService bookService = new BookService();
-    public void insertBook() {
-        bookService.insertBook();
+
+    public void insertBook(Book book) {
+        int result = bookService.insertBook(book);
+        BookResultview.displayResult("도서 등록", result);
     }
 
-    public void updateBook() {
-        bookService.updateBook();
+    public void updateBook(Book book) {
+        int result = bookService.updateBook(book);
+        BookResultview.displayResult("도서 정보 수정", result);
     }
 
     public void deleteBook() {
