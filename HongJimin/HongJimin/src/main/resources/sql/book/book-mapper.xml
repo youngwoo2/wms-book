@@ -51,7 +51,7 @@
         where
             price = #{price}
     </select>
-    <insert id="insertBook" useGeneratedKeys="true" parameterType="Book">
+    <insert id="insertBook" useGeneratedKeys="true" >
         insert into
         tbl_book
         values(
@@ -69,6 +69,13 @@
             category = #{category}
         where
             book_id = #{bookId}
-            )
+
     </update>
+    <delete id="deleteBook">
+        delete
+            from tbl_book
+        where
+            book_id = #{bookId}
+
+    </delete>
 </mapper>
