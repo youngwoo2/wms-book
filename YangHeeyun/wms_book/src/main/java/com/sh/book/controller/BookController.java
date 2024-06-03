@@ -2,11 +2,14 @@ package com.sh.book.controller;
 
 import com.sh.book.model.dto.BookDto;
 import com.sh.book.service.BookService;
+import com.sh.book.view.BookResultView;
+import com.sh.common.SearchCriteria;
+
 import java.util.List;
 
 public class BookController {
 
-    BookService bookService = new BookService();
+    static BookService bookService = new BookService();
 
     public void insertBook() {
         bookService.insertBook();
@@ -18,19 +21,21 @@ public class BookController {
 
     public void findAllBook() {
        List<BookDto> bookList =  bookService.findAllBook();
-       for(BookDto bookDto: bookList){
+       for(BookDto bookDto : bookList){
            System.out.println(bookDto);
        }
     }
 
-    public List<BookDto> findBookByChoice(int bookId, String title, String author, int price, String category){
-        return bookService.findBookByChoice(bookId, title,author,price,category);
+    public List<BookDto> searchBook(SearchCriteria searchCriteria) {
+        try{
+            List<BookDto> bookList = bookService.searchBook(searchCriteria);
+            BookResultView.displayBookList(bookList);
+//            for(BookDto bookDto : bookList){
+//                System.out.println(bookDto);
+//            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
-
-//    public void findBookByChoice(int bookId, String title, String author, int price, String category){
-//        List<BookDto> bookList =  bookService.findBookByChoice(bookId, title,author,price,category);
-//        for(BookDto bookDto: bookList){
-//            System.out.println(bookDto);
-//        }
-//    }
 }

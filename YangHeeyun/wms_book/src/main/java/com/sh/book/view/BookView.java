@@ -2,6 +2,7 @@ package com.sh.book.view;
 
 import com.sh.book.controller.BookController;
 import com.sh.book.model.dto.BookDto;
+import com.sh.common.SearchCriteria;
 
 import java.awt.print.Book;
 import java.util.List;
@@ -57,44 +58,44 @@ public class BookView {
 
         while(true) {
             System.out.print(menu);
-            int choice = sc.nextInt();
-            int bookId = 0;
-            String title = null;
-            String author = null;
-            int price = 0;
-            String category = null;
-            switch (choice) {
-                case 1:
-                    System.out.print("> 도서ID 입력 : ");
-                    bookId = sc.nextInt();
-                    break;
-                case 2:
-                    System.out.print("> 도서명 입력 : ");
-                    title = sc.next();
-                    break;
-                case 3:
-                    System.out.print("> 저자 입력 : ");
-                    author = sc.next();
-                    break;
-                case 4:
-                    System.out.print("> 가격 입력 : ");
-                    price = sc.nextInt();
-                    break;
-                case 5:
-                    System.out.print("> 카테고리 입력 : ");
-                    category = sc.next();
-                    break;
-                default:
-                    System.out.println("❎잘못된 입력입니다❎");
-            }
-
-            List<BookDto> bookList = bookController.findBookByChoice(bookId, title, author, price, category);
-            for (BookDto bookDto : bookList) {
-                if(bookDto != null)
-                    System.out.println(bookDto);
-                else
-                    System.out.println("조건과 일치하는 도서가 없습니다");
-            }
+            String choice = sc.next();
+            SearchCriteria searchCriteria  = switch (choice) {
+                case "1" -> inputBookId();
+                case "2" -> inputTitle();
+                case "3" -> inputAuthor();
+                case "4" -> inputPrice();
+                case "5" -> inputCategory();
+                default -> null;
+            };
+            if(searchCriteria != null)
+                bookController.searchBook(searchCriteria);
+            else
+                System.out.println("❎잘못 입력하셨습니다❎");
         }
+    }
+
+    private SearchCriteria inputBookId() {
+        System.out.print("> 검색할 도서ID 입력 : ");
+        return new SearchCriteria("bookId",sc.nextInt());
+    }
+
+    private SearchCriteria inputTitle() {
+        System.out.print("> 검색할 도서명 입력 : ");
+        return new SearchCriteria("title",sc.next());
+    }
+
+    private SearchCriteria inputAuthor() {
+        System.out.print("> 검색할 저자 입력 : ");
+        return new SearchCriteria("author",sc.next());
+    }
+
+    private SearchCriteria inputPrice() {
+        System.out.print("> 검색할 가격 입력 : ");
+        return new SearchCriteria("price",sc.nextInt());
+    }
+
+    private SearchCriteria inputCategory() {
+        System.out.print("> 검색할 카테고리 입력 : ");
+        return new SearchCriteria("category",sc.next());
     }
 }

@@ -3,36 +3,43 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sh.book.model.dao.BookMapper">
-    <select id = "findAllBook" resultType = "com.sh.book.model.dto.BookDto">
-        select
-            *
-        from
-            tbl_book;
-    </select>
-
-    <select id = "findBookByChoice" resultType = "com.sh.book.model.dto.BookDto">
+    <resultMap id ="bookDtoMap" type="bookDto">
+        <id column = "book_id" property = "bookId"/>
+        <result column = "title" property="title"/>
+        <result column = "author" property="author"/>
+        <result column = "price" property="price"/>
+        <result column = "category" property="category"/>
+    </resultMap>
+    <select id = "searchBook" resultMap = "bookDtoMap">
         select
             *
         from
             tbl_book
         <where>
-            <choose>
-                <when test="bookId != null">
-                    AND book_id = #{bookId}
-                </when>
-                <when test="title != null">
-                    AND title LIKE CONCAT('%', #{title}, '%')
-                </when>
-                <when test="author != null">
-                    AND author LIKE CONCAT('%', #{author}, '%')
-                </when>
-                <when test="price != null">
-                    AND price = #{price}
-                </when>
-                <when test="category != null">
-                    AND category LIKE CONCAT('%', #{category}, '%')
-                </when>
-            </choose>
+            <if test = "name == 'bookId'">
+                book_id = #{value}
+            </if>
+            <if test = "name == 'title'">
+                title like concat('%',#{value}, '%')
+            </if>
+            <if test = "name == 'author'">
+                author like concat('%',#{value}, '%')
+            </if>
+            <if test = "name == 'price'">
+                price = #{value}
+            </if>
+            <if test = "name == 'category'">
+                category like concat('%',#{value}, '%')
+            </if>
         </where>
+        order by
+            book_id
+    </select>
+
+    <select id = "findAllBook" resultType = "com.sh.book.model.dto.BookDto">
+        select
+        *
+        from
+        tbl_book;
     </select>
 </mapper>

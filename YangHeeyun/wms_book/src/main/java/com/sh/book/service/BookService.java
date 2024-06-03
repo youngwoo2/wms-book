@@ -2,6 +2,7 @@ package com.sh.book.service;
 
 import com.sh.book.model.dao.BookMapper;
 import com.sh.book.model.dto.BookDto;
+import com.sh.common.SearchCriteria;
 import org.apache.ibatis.session.SqlSession;
 
 import java.awt.print.Book;
@@ -22,9 +23,11 @@ public class BookService {
         return bookMapper.findAllBook();
     }
 
-    public List<BookDto> findBookByChoice(int bookId, String title, String author, int price, String category) {
-       SqlSession sqlSession = getSqlSession();
-       BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
-       return bookMapper.findBookByChoice(bookId, title,author,price,category);
+    public List<BookDto> searchBook(SearchCriteria searchCriteria) {
+        SqlSession sqlSession = getSqlSession();
+        BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+        List<BookDto> bookList = bookMapper.searchBook(searchCriteria);
+        sqlSession.close();
+        return bookList;
     }
 }
