@@ -1,6 +1,9 @@
 package com.sh.user.view;
 
+import com.sh.book.model.dto.BookDto;
 import com.sh.user.model.dto.UserDto;
+
+import java.util.List;
 
 public class ResultView {
     public static void displayLoginMenu(UserDto userDto) {
@@ -11,5 +14,9 @@ public class ResultView {
         } else {
             System.out.printf("😀 %s님 로그인 성공. 환영합니다!! 😀\n", userDto.getUserName());
         }
+    }
+
+    public static void displayBookList(List<BookDto> list) {
+
     }
 }
