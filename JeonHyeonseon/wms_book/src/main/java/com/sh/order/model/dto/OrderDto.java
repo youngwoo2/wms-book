@@ -1,8 +1,10 @@
 package com.sh.order.model.dto;
 
+import com.mysql.cj.x.protobuf.MysqlxCrud;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,4 +17,13 @@ public class OrderDto {
     private String ordererAddress; // 주문자 주소
     private LocalDateTime orderDate; // 주문 날짜
     private Status status; // 주문상태
+
+    public OrderDto(String ordererName, String ordererAddress, LocalDateTime orderDate) {
+        this.ordererName = ordererName;
+        this.ordererAddress = ordererAddress;
+        this.orderDate = orderDate;
+    }
+
+    // 1:N관계를 객체지향에서 표현하는 방식
+    private List<OrderItemDto> orderItemList;
 }
