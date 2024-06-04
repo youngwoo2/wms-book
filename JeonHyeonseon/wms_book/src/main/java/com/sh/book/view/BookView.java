@@ -3,6 +3,7 @@ package com.sh.book.view;
 import com.sh.book.controller.BookController;
 import com.sh.book.model.dto.BookDto;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class BookView {
@@ -54,6 +55,27 @@ public class BookView {
     private void updateBook() {
         System.out.println("     [ 도서 수정 ]");
         System.out.println("---------------------");
+        System.out.println("수정할 도서 아이디를 입력하세요.");
+        List<BookDto> list = bookController.findAllBooks();;
+        BookDto chosenBookId = null;
+        int bookId = 0;
+        do {
+            try {
+                System.out.print("도서 아이디 : ");
+                bookId = sc.nextInt();
+                int finalBookId = bookId;
+                chosenBookId = list.stream()
+                        .filter((b) -> b.getBookId() == finalBookId)
+                        .findFirst()
+                        .orElse(null);
+                if (chosenBookId == null)
+                    System.out.println("도서 아이디를 잘못 입력하셨습니다. 다시 입력해주세요.");
+            } catch (Exception e) {
+                sc.nextLine();
+                System.out.println("숫자가 아닌 값을 입력하셨습니다. 양의 정수를 입력해주세요.");
+            }
+        } while (chosenBookId == null);
+//        sc.nextLine(); // 초기화
         System.out.print("도서명 : ");
         String title = sc.nextLine();
         sc.nextLine();
@@ -74,19 +96,17 @@ public class BookView {
     private void insertBook() {
         System.out.println("     [ 도서 등록 ]");
         System.out.println("---------------------");
+        sc.nextLine(); // 초기화
         System.out.print("도서명 : ");
-        String title = sc.next();
-        sc.nextLine();
+        String title = sc.nextLine();
         System.out.print("저자 : ");
         String author = sc.nextLine();
         System.out.print("설명 : ");
         String description = sc.nextLine();
-        sc.nextLine();
         System.out.print("가격 : ");
         int price = sc.nextInt();
         System.out.print("카테고리 : ");
         String category = sc.next();
-        sc.nextLine();
         BookDto bookDto = new BookDto(0, title, author, description, price, category, null);
         bookController.insertBook(bookDto);
     }
