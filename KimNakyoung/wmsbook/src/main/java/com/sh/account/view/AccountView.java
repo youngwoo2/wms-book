@@ -35,16 +35,6 @@ public class AccountView {
             password = sc.nextLine();
             accountDto = accountController.login(userId,password);
 
-
-//            if(accountDto == null) {
-//                System.out.println("등록된 회원정보가 없습니다.");
-//            } else if (accountDto.getRole() != Role.manager) {
-//                System.out.println("관리자만 이용가능 합니다.");
-//
-//            }else {
-//                System.out.println(accountDto.getUserName() + "님 환영합니다." );
-//            }
-
         } while ((accountDto == null || accountDto.getRole() != Role.manager));
 
         // 로그인 성공시 메인메뉴 호출

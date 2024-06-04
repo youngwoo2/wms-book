@@ -24,4 +24,12 @@ public class BookDto {
 
     private Timestamp createdAt; // 생성날짜
 
+    @Override
+    public String toString() {
+        return String.format(
+                "도서코드: %d, 도서명: %s, 저자: %s, 설명: %s, 가격: %d, 카테고리: %s, 생성날짜: %s",
+                bookId, title, author, description, price, category, createdAt
+        );
+    }
+
 }

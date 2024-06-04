@@ -14,7 +14,12 @@ import java.time.LocalDateTime;
 public class User {
     private int userId;
     private String userName;
-    private String userPassword;
+    private String password;
     private Role role;
     private LocalDateTime userCreatedAt;
+
+    public User(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
 }
