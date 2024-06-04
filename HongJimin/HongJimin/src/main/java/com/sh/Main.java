@@ -9,7 +9,7 @@ public class Main {
         📖📖📖📖WMS 프로그램 시작합니다📖📖📖📖
         ======================================""");
         UserView userView = new UserView();
-        userView.loginMenu();
+        userView.loginCheck();
         System.out.println("📢프로그램을 종료합니다📢");
     }
 }
