@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sh.book.model.dao.BookMapper">
+
+    <select id="findAll" parameterType="map" resultType="BookDto">
+        select *
+        from tbl_book;
+    </select>
+    <select id="findByBookId" parameterType="map" resultType="BookDto">
+        select *
+        from tbl_book
+        where book_id = #{bookId} ;
+    </select>
+    <select id="findByTitle" parameterType="map" resultType="BookDto">
+        select *
+        from tbl_book
+        where title = #{title} ;
+    </select>
+    <select id="findByAuthor" parameterType="map" resultType="BookDto">
+        select *
+        from tbl_book
+        where author = #{author} ;
+    </select>
+    <select id="findByCategory" parameterType="map" resultType="BookDto">
+        select *
+        from tbl_book
+        where category = #{category} ;
+    </select>
+    <select id="findByPrice" parameterType="map" resultType="BookDto">
+        select *
+        from tbl_book
+        where price = #{price} ;
+    </select>
+</mapper>
