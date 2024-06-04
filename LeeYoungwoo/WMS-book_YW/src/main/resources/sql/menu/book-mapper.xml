@@ -33,20 +33,20 @@
             *
         from
             tbl_book
-        where
-        1 = 1
-        <if test="name == 'title'">
-            and title like concat('%', #{value}, '%')
-        </if>
-        <if test="name == 'author'">
-            and author = #{value}
-        </if>
-        <if test="name == 'category'">
-            and category = #{value}
-        </if>
-        <if test="name == 'price'">
-            and price between #{start} and #{end}
-        </if>
+        <where>
+            <if test="name == 'title'">
+                and title like concat('%', #{value}, '%')
+            </if>
+            <if test="name == 'author'">
+                and author = #{value}
+            </if>
+            <if test="name == 'category'">
+                and category = #{value}
+            </if>
+            <if test="name == 'price'">
+                and price between #{start} and #{end}
+            </if>
+        </where>
     </select>
     
     <insert id="insertBook" useGeneratedKeys="true" keyProperty="bookId">
