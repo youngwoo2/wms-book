@@ -53,7 +53,7 @@
         insert into
             tbl_book
         values (
-            null, #{title}, #{author}, #{description}, #{price}, #{category}, null
+            null, #{title}, #{author}, #{description}, #{price}, #{category}, NOW()
         )
     </insert>
     <update id="updateBook">
