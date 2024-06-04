@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,4 +18,6 @@ public class Order {
     private String ordererAddress;
     private LocalDateTime orderDate;
     private Status status;
+
+    private List<OrderItem> orderItemList;
 }

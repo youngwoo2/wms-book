@@ -1,5 +1,6 @@
 package com.sh.order.model.entity;
 
+import com.sh.book.model.entity.Book;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,4 +15,6 @@ public class OrderItem {
     private int orderId;
     private int bookId;
     private int quantity;
+
+    private Book book;
 }
