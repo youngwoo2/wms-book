@@ -20,8 +20,10 @@ public class BookView {
                                 🤗🤗🤗
                 =========================================
                 도서 관리 입니다. 원하시는 메뉴를 선택해주세요
-                1. 도서 등록 및 수정
+                1. 도서 등록
                 2. 도서 조회
+                3. 도서 삭제
+                4. 도서 수정 
                 0. 뒤로 가기
                 =========================================
                 입력:""";
@@ -30,13 +32,24 @@ public class BookView {
             System.out.println(menu);
             String choice = scanner.next();
             switch (choice) {
-                // 도서 등록 및 수정
+                // 도서 등록
                 case "1":
+                    bookController.inserBook(insertBook());
                     break;
 
                 // 도서 조회
                 case "2":
                     bookSearch();
+                    break;
+
+                // 도서 삭제
+                case "3":
+                    bookController.deleteBookById(deleteBookById());
+                    break;
+
+                // 도서 수정
+                case "4":
+                    bookController.updateBookInfo(updateBookInfo());
                     break;
 
                 // 뒤로 가기
@@ -116,11 +129,10 @@ public class BookView {
             String choice = scanner.next();
             switch (choice) {
                 case "1":
-                     System.out.println("검색하실 책의 ID를 입력해주세요.");
-                     int bookId = scanner.nextInt();
-                     book = bookController.findByBookId(bookId);
-                     ResultView.displayBook(book);
-
+                    System.out.println("검색하실 책의 ID를 입력해주세요.");
+                    int bookId = scanner.nextInt();
+                    book = bookController.findByBookId(bookId);
+                    ResultView.displayBook(book);
 
                     break;
 
@@ -129,6 +141,7 @@ public class BookView {
                     String author = scanner.next();
                     bookController.findByAuthor(author);
                     break;
+
 
                 case "3":
                     System.out.println("검색하실 카테고리 입력해주세요");
@@ -146,4 +159,46 @@ public class BookView {
 
 
     }
+
+    public int deleteBookById() {
+        System.out.println("삭제하고 싶으신 책의 ID 입력해주세요");
+        System.out.println("도서 ID 입력 : ");
+        return  scanner.nextInt();
+
+
+    }
+
+    //도서 정보 업데이트
+    public Book updateBookInfo() {
+        System.out.println("수정하실 책의 ID를 입력해 주세요");
+        int bookId = scanner.nextInt();
+        System.out.println("수정 할 책의 제목을 입력하세요");
+        String title = scanner.next();
+        System.out.println("수정 할 책의 저자 이름을 입력하세요");
+        String author = scanner.next();
+        System.out.println("수정 할 책의 설명을 입력하세요");
+        String description = scanner.next();
+        System.out.println("수정 할 책의 가격을 입력하세요");
+        int price = scanner.nextInt();
+        System.out.println("수정 할 책의 카테고리명을 입력하세요");
+        String category = scanner.next();
+        return new Book(bookId, title, author, description, price, category, null);
+    }
+
+    // 도서 등록
+    public Book insertBook() {
+        System.out.println("등록하실 책의 제목 입력해주세요 !! ");
+        String title = scanner.next();
+        System.out.println("등록하실 저자의 이름을 입력해주세요!!");
+        String author = scanner.next();
+        System.out.println("등록하실 책의 설명을 간단히 입력해주세요!!");
+        String description = scanner.next();
+        System.out.println("등록하실 책의 가격을 입력해주세요!!");
+        int price = scanner.nextInt();
+        System.out.println("등록하실 책의 카테고리명을 입력해주세요!!");
+        String category = scanner.next();
+        return new Book(0, title, author, description, price, category, null);
+    }
+
+
 }
