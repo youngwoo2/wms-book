@@ -69,7 +69,7 @@ public class BookMenuView {
         int price = sc.nextInt();
         System.out.print("카테고리 입력 : ");
         String category = sc.next();
-        return new BookDto(bookId, title, author, description, price, category, LocalDateTime.now());
+        return new BookDto(bookId, title, author, description, price, category, null);
     }
 
     private BookDto insertBook() {
@@ -87,11 +87,7 @@ public class BookMenuView {
         int price = sc.nextInt();
         System.out.print("카테고리 입력 : ");
         String category = sc.next();
-//        String localDateTimeFormat2
-//                = localDateTime.format(
-//                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-//        );
-        return new BookDto(0, title, author, description, price, category, LocalDateTime.now());
+        return new BookDto(0, title, author, description, price, category, null);
     }
 
     public void searchMenu() {
