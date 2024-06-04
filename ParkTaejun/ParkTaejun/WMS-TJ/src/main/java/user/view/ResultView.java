@@ -15,12 +15,14 @@ public class ResultView {
             System.out.printf("%s\t%s\t%s\t%s\t%s\n", "--도서 제목--", "--저자--", "--설명--", "--가격--", "--카테고리--");
             System.out.println("=================================================================");
             for (Book book : list) {
-                System.out.printf("%s\t%s\t%s\t%d\t%s\n",
+                System.out.printf("%d\t%s\t%s\t%s\t%d\t%s\n",
+                        book.getBookId(),
                         book.getTitle(),
                         book.getAuthor(),
                         book.getDescription(),
                         book.getPrice(),
-                        book.getCategory()
+                        book.getCategory(),
+                        book.getCreatedAt()
                 );
             }
         }
@@ -75,6 +77,7 @@ public class ResultView {
                         book.getDescription(),
                         book.getPrice(),
                         book.getCategory());
+
             }
         }
     }
@@ -94,4 +97,9 @@ public class ResultView {
     public static void displayInsertBook(String type, int result) {
         System.out.println(">" + type + " " + (result > 0 ? "🤗성공!!🤗" : "🤗실패🤗"));
     }
+
+    public static void displayCreateOrder(int result) {
+        System.out.println(  (result > 0 ? "🤗성공!!🤗" : "🤗실패🤗"));
+    }
+
 }

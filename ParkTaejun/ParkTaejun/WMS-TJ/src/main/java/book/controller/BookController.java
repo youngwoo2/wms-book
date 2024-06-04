@@ -30,9 +30,10 @@ public class BookController {
 
     }
 
-    public void findByCategry(String category) {
+    public List<Book> findByCategry(String category) {
         List<Book> list = bookService.findByCategory(category);
         ResultView.displayBookByCategory(list);
+        return list;
     }
 
     public void deleteBookById(int bookId) {
