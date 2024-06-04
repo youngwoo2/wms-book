@@ -16,5 +16,8 @@ public class OrderItem {
     private int bookId;
     private int quantity;
 
-    private Book book;
+    public OrderItem(int bookId, int quantity) {
+        this.bookId = bookId;
+        this.quantity = quantity;
+    }
 }
