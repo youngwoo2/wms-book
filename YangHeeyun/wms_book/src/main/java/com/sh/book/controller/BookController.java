@@ -11,12 +11,16 @@ public class BookController {
 
     static BookService bookService = new BookService();
 
-    public void insertBook() {
-        bookService.insertBook();
+    public void insertBook(BookDto bookDto) {
+        bookService.insertBook(bookDto);
     }
 
-    public void updateBook() {
-        bookService.updateBook();
+    public void updateBook(BookDto bookDto) {
+        bookService.updateBook(bookDto);
+    }
+
+    public void deleteBook(int bookId) {
+        bookService.deleteBook(bookId);
     }
 
     public void findAllBook() {
@@ -30,9 +34,6 @@ public class BookController {
         try{
             List<BookDto> bookList = bookService.searchBook(searchCriteria);
             BookResultView.displayBookList(bookList);
-//            for(BookDto bookDto : bookList){
-//                System.out.println(bookDto);
-//            }
         }catch (Exception e){
             e.printStackTrace();
         }
