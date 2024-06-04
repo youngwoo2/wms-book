@@ -38,49 +38,49 @@ public class OrderView {
         }
     }
     private void inputOrderBook() {
-        System.out.println("  [ 주문자 정보 입력 ]");
-        System.out.println("---------------------");
-        System.out.print("이름 : ");
-        String ordererName = sc.nextLine();
-        System.out.print("주소 : ");
-        String ordererAddress = sc.nextLine();
-        OrderDto orderDto = new OrderDto(ordererName, ordererAddress, null);
-
-        System.out.println("주문할 도서를 입력해주세요");
-        List<OrderItemDto> orderItemList = new ArrayList<>();
-
-        while (true) {
-            System.out.println("------------------------------");
-            System.out.println("도서 정보를 참고해주세요");
-            // 도서 전체 조회
-            bookController.findAllBooks();
-            System.out.println("------------------------------");
-
-
-            // 선택한 카테고리의 메뉴 노출
-            List<BookDto> bookList = bookController.findByCategory(category);
-            if(bookList.isEmpty())
-                continue;
-
-            // 도서명 선택
-            System.out.print("도서명 : ");
-            int bookId = sc.nextInt();
-            int price = bookList.stream()
-                    .filter((book) -> book.getBookId() == bookId)
-                    .findFirst()
-                    .get()
-                    .getPrice();
-
-            // 수량 선택
-            System.out.print("수량 : ");
-            int quantity = sc.nextInt();
-
-            // OrderItem객체 처리
-            OrderItemDto orderItemDto = new OrderItemDto(0, orderId, bookId, quantity);
-            orderItemDto.add(orderItemDto);
-            // 결제금액 total
-        }
-
+//        System.out.println("  [ 주문자 정보 입력 ]");
+//        System.out.println("---------------------");
+//        System.out.print("이름 : ");
+//        String ordererName = sc.nextLine();
+//        System.out.print("주소 : ");
+//        String ordererAddress = sc.nextLine();
+//        OrderDto orderDto = new OrderDto(ordererName, ordererAddress, null);
+//
+//        System.out.println("주문할 도서를 입력해주세요");
+//        List<OrderItemDto> orderItemList = new ArrayList<>();
+//
+//        while (true) {
+//            System.out.println("------------------------------");
+//            System.out.println("도서 정보를 참고해주세요");
+//            // 도서 전체 조회
+//            bookController.findAllBooks();
+//            System.out.println("------------------------------");
+//
+//
+//            // 선택한 카테고리의 메뉴 노출
+//            List<BookDto> bookList = bookController.findByCategory(category);
+//            if(bookList.isEmpty())
+//                continue;
+//
+//            // 도서명 선택
+//            System.out.print("도서명 : ");
+//            int bookId = sc.nextInt();
+//            int price = bookList.stream()
+//                    .filter((book) -> book.getBookId() == bookId)
+//                    .findFirst()
+//                    .get()
+//                    .getPrice();
+//
+//            // 수량 선택
+//            System.out.print("수량 : ");
+//            int quantity = sc.nextInt();
+//
+//            // OrderItem객체 처리
+//            OrderItemDto orderItemDto = new OrderItemDto(0, orderId, bookId, quantity);
+//            orderItemDto.add(orderItemDto);
+//            // 결제금액 total
+//        }
+//
     }
 
 }
