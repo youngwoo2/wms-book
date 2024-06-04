@@ -20,14 +20,15 @@ public class UserView {
     public void userMenu() {
         while (true) {
             String mainMenu = """
-                     ✅메뉴를 선택해주세요✅
-                        1. 도서 관리
-                        2. 재고 관리
-                        3. 주문 관리
-                        4. 프로그램 종료
-                    ======================
+                      ✅메뉴를 선택해주세요✅
+                    ========================
+                         1. 도서 관리
+                         2. 재고 관리
+                         3. 주문 관리
+                         4. 프로그램 종료
+                    ========================
                     """;
-            System.out.println(mainMenu);
+            System.out.print(mainMenu);
             String choice = sc.next();
             switch (choice) {
                 case "1":  // 1. 도서관리
@@ -57,18 +58,14 @@ public class UserView {
             System.out.print("▶ Password 입력해주세요 : ");
             String password = sc.next();
             userControlelr.loginCheck(id, password);
-
-            String login = """
+        }
+        while (!AuthManager.isLogin());
+        String login = """
                     ========================
                          ✅로그인 성공!✅
                     ========================
                     """;
-            System.out.println(login);
-            userMenu();
-        }
-        while (AuthManager.isLogin());
+        System.out.print(login);
         userMenu();
     }
-
-
 }
