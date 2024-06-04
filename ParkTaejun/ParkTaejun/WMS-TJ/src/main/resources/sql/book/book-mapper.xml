@@ -16,7 +16,7 @@
         from
         tbl_book
         where
-        book_Id = ${bookId}
+        book_id = #{bookId}
 
     </select>
 
@@ -26,7 +26,7 @@
         from
         tbl_book
         where
-        author = '${author}'
+        author = #{author}
 
     </select>
 
@@ -36,10 +36,37 @@
         from
         tbl_book
         where
-        category = '${category}'
+        category = #{category}
 
     </select>
 
 
+    <delete id="deleteBookById">
+        delete from
+            tbl_book
+        where
+            book_id = #{bookId}
+    </delete>
+
+    <update id="updateBookInfo">
+        update
+        tbl_book
+        set
+        title = #{title},
+        author = #{author},
+        description = #{description},
+        price = #{price},
+        category = #{category}
+        where
+        book_id = #{bookId}
+    </update>
+
+    <insert id="insertBook">
+        insert into
+        tbl_book
+        values(
+        #{bookId}, #{title}, #{author}, #{description}, #{price}, #{category}, NOW())
+
+    </insert>
 
 </mapper>

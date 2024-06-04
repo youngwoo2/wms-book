@@ -8,11 +8,11 @@ import static com.sh.common.MyBatisTemplate.getSqlSession;
 
 public class UserService {
 
-    public UserDto login(int id, String pw) {
+    public UserDto login(int id, String password) {
         SqlSession sqlSession = getSqlSession();
         try{
             UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-            return userMapper.login(id,pw);
+            return userMapper.login(id,password);
         }finally {
             sqlSession.close();
         }
