@@ -1,6 +1,7 @@
 package com.sh.book.model.dao;
 
 import com.sh.book.model.dto.BookDto;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface BookMapper {
 
     int insertBook(BookDto book);
 
-    int updateBook(BookDto bookId);
+    int updateBook(@Param("book") BookDto book, @Param("bookId") int bookId);
 
     int deleteBook(int bookId);
     int deleteInventoryByBookId(int bookId);

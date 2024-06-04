@@ -53,11 +53,11 @@ public class BookService {
         }
     }
 
-    public int updateBook(BookDto book) {
+    public int updateBook(BookDto book, int bookId) {
         SqlSession sqlSession = getSqlSession();
         BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
         try {
-            int result = bookMapper.updateBook(book);
+            int result = bookMapper.updateBook(book, bookId);
             sqlSession.commit();
             return result;
         } catch (Exception e) {

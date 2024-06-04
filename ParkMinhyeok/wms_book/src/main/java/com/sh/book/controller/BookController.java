@@ -29,11 +29,14 @@ public class BookController {
     }
     public void insertBook(BookDto book) {
         int result = bookService.insertBook(book);
+        System.out.println(result == 1 ? "등록 완료" : "등록 실패");
     }
-    public void updateBook(BookDto book) {
-        int result = bookService.updateBook(book);
+    public void updateBook(BookDto book, int bookId) {
+        int result = bookService.updateBook(book, bookId);
+        System.out.println(result == 1 ? "수정 완료" : "수정 실패");
     }
     public void deleteBook(int bookId) {
         int result = bookService.deleteBook(bookId);
+        System.out.println(result == 1 ? "삭제완료" : "삭제 실패");
     }
 }

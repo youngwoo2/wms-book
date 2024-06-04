@@ -96,17 +96,17 @@ class BookMapperTest {
     @DisplayName("Test update book")
     @Test
     void updateBook() {
-        int id = 1;
+        int bookId = 1;
         // given
         BookDto book = new BookDto();
-        book.setBookId(id);
+        book.setBookId(bookId);
         book.setTitle("테스트");
         book.setAuthor("테스트 저자");
         book.setDescription("테스트 테스트");
         book.setPrice(12000);
         book.setCategory("역사");
         // when
-        int result = bookMapper.updateBook(book);
+        int result = bookMapper.updateBook(book, bookId);
         // then
         assertEquals(result, 1);
     }
