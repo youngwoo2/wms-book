@@ -14,7 +14,8 @@
         insert into
             tbl_order_item
         values(
-            null, #{orderId}, #{bookId}, #{quantity}
+            null, #{orderId}, #{bookId}, #{quantity},
         )
     </insert>
+    
 </mapper>

@@ -6,7 +6,9 @@ import com.sh.order.model.entity.Order;
 import com.sh.order.model.entity.OrderItem;
 import com.sh.order.model.entity.Status;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -63,13 +65,8 @@ public class OrderView {
 //        System.out.println(order);
 
         orderController.createOrder(order);
-        OrderResultView.displayOrderInfo(order);
 //        OrderResultView.displayBookOrder(order);
-
-
     }
-
-
 }
 
 

@@ -16,7 +16,7 @@ public class OrderService {
 
         try {
             int result = orderMapper.insertOrder(order);
-            System.out.println(order.getOrderId());
+//            System.out.println(order.getOrderId());
 
             for(OrderItem orderItem : order.getOrderItemList()) {
                 orderItem.setOrderId(order.getOrderId());

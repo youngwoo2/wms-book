@@ -9,18 +9,11 @@ import com.sh.order.view.OrderResultView;
 
 public class OrderController {
     OrderService orderService = new OrderService();
-//    public void insertOrder() {
-//        orderService.insertOrder();
-//    }
-
-//    public void fulfillOrder() {
-//        orderService.fulfillOrder();
-//    }
-
     public void createOrder(Order order) {
         try {
             int result = orderService.createOrder(order);
             OrderResultView.displayResult("도서 주문서 등록 ", result);
+            OrderResultView.displayOrderInfo(order);
         } catch (CreateOrderTransactionException e) {
             e.printStackTrace();
             ErrorView.displayError(e.getErrorCode());
