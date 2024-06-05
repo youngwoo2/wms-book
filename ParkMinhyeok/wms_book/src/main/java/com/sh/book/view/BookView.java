@@ -104,6 +104,7 @@ public class BookView {
                 2. ID로 조회
                 3. 도서 이름으로 조회
                 4. 도서 저자로 조회
+                5. 도서 카테고리로 조회
                 0. 뒤로가기
                 ===========================================
                 """;
@@ -127,6 +128,11 @@ public class BookView {
                 System.out.println("저자 이름 입력 : ");
                 String author = sc.next();
                 bookController.findByAuthor(author);
+                break;
+            case "5" :
+                System.out.println("카테고리 입력 : ");
+                String category = sc.next();
+                bookController.findByCategory(category);
                 break;
             case "0" :
                 return;

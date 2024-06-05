@@ -13,6 +13,7 @@ public interface BookMapper {
     BookDto findByBookTitle(String title);
 
     BookDto findByBookAuthor(String author);
+    List<BookDto> findByCategory(String category);
 
     int insertBook(BookDto book);
 

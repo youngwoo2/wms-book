@@ -41,6 +41,15 @@
             author = #{author}
     </select>
 
+    <select id="findByCategory" resultMap="bookDtoMap">
+        select
+            *
+        from
+            tbl_book
+        where
+            category = #{category}
+    </select>
+
     <insert id="insertBook" useGeneratedKeys="true" keyProperty="bookId">
         insert into
             tbl_book

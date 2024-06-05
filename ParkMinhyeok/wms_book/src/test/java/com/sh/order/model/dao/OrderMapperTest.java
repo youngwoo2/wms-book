@@ -39,7 +39,7 @@ class OrderMapperTest {
 
         // when
         int result = orderMapper.insertOrder(order);
-        sqlSession.commit();
+//        sqlSession.commit();
 
         // then
         assertEquals(1, result);
@@ -58,7 +58,7 @@ class OrderMapperTest {
 
         // 먼저 주문을 삽입하여 order_id를 생성
         int orderResult = orderMapper.insertOrder(order);
-        sqlSession.commit();
+//        sqlSession.commit();
         assertEquals(1, orderResult);
         assertNotNull(order.getOrderId());
 
@@ -69,7 +69,7 @@ class OrderMapperTest {
 
         // When
         int result = orderMapper.insertOrderItem(orderItem);
-        sqlSession.commit();
+//        sqlSession.commit();
 
         // Then
         assertEquals(1, result);

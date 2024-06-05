@@ -35,7 +35,15 @@ public class BookService {
         SqlSession sqlSession = getSqlSession();
         BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
         BookDto book = bookMapper.findByBookAuthor(author);
+        sqlSession.close();
         return book;
+    }
+    public List<BookDto> findByCategory(String category) {
+        SqlSession sqlSession = getSqlSession();
+        BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+        List<BookDto> bookList = bookMapper.findByCategory(category);
+        sqlSession.close();
+        return bookList;
     }
 
     public int insertBook(BookDto book) {

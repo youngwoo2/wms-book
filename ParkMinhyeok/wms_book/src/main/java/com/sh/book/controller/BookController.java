@@ -27,6 +27,12 @@ public class BookController {
         BookDto book = bookService.findByAuthor(author);
         System.out.println(book);
     }
+    public void findByCategory(String category) {
+        List<BookDto> bookList = bookService.findByCategory(category);
+        for (BookDto book : bookList) {
+            System.out.println(book);
+        }
+    }
     public void insertBook(BookDto book) {
         int result = bookService.insertBook(book);
         System.out.println(result == 1 ? "등록 완료" : "등록 실패");
