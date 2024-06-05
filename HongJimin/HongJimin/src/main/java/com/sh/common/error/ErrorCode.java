@@ -8,7 +8,11 @@ import lombok.RequiredArgsConstructor;
 
 public enum ErrorCode {
     FIND_All_BOOK_ERROR("도서 전체 조회 중 오류가 발생했습니다."),
-    FIND_A_BOOK_ERROR("한 권의 도서 조회 중 오류가 발생했습니다.");
+    FIND_A_BOOK_ERROR("한 권의 도서 조회 중 오류가 발생했습니다."),
+    FIND_BOOK_BY_TITLE_ERROR("책 제목 조회 중 오류가 발생했습니다"),
+    FIND_BOOK_BY_AUTHOR_ERROR("저자 조회 중 오류가 발생했습니다."),
+    FIND_BOOK_BY_CATEGORY_ERROR("카테고리 조회 중 오류가 발생했습니다."),
+    FIND_BOOK_BY_PRICE_ERROR("가격 조회 중 오류가 발생했습니다.");
 
     @Getter
     final String msg;

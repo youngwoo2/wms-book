@@ -4,21 +4,54 @@ import com.sh.book.model.dao.BookMapper;
 import com.sh.book.model.entity.Book;
 import org.apache.ibatis.session.SqlSession;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static com.sh.common.MyBatisTemplate.getSqlSession;
 
 public class BookService {
-    public void insertBook() {
+    public int insertBook(Book book) {
+        SqlSession sqlSession = getSqlSession();
+        BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+        try {
+            int result = bookMapper.insertBook(book);
+            sqlSession.commit();
+            return result;
+        } catch (Exception e) {
+            sqlSession.rollback();
+            throw new RuntimeException(e);
+        } finally {
+            sqlSession.close();
+        }
     }
 
-    public void updateBook() {
-
+    public int updateBook(Book book) {
+        SqlSession sqlSession = getSqlSession();
+        BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+        try {
+            int result = bookMapper.updateBook(book);
+            sqlSession.commit();
+            return result;
+        } catch (Exception e) {
+            sqlSession.rollback();
+            throw new RuntimeException(e);
+        }finally {
+            sqlSession.close();
+        }
     }
 
-    public void deleteBook() {
+    public int deleteBook(int bookId) {
+        SqlSession sqlSession = getSqlSession();
+        BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+        try {
+            int result = bookMapper.deleteBook(bookId);
+            sqlSession.commit();
+            return result;
+        } catch (Exception e) {
+            sqlSession.rollback();
+            throw new RuntimeException(e);
+        }finally {
+            sqlSession.close();
+        }
     }
 
     public List<Book> findAllBook() {
@@ -39,7 +72,40 @@ public class BookService {
         return book;
     }
 
-//    public List<Book> findBookByCategory() {
-//        List<Book> bookList = b
-//    }
+    public Book findByTitle(String title) {
+        SqlSession sqlSession = getSqlSession();
+        BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+
+        Book book = bookMapper.findByTitle(title);
+        sqlSession.close();
+        return book;
+    }
+
+    public Book findByAuthor(String author) {
+        SqlSession sqlSession = getSqlSession();
+        BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+
+        Book book = bookMapper.findByAuthor(author);
+        sqlSession.close();
+        return book;
+    }
+
+    public List<Book> findByCategory(String category) {
+        SqlSession sqlSession = getSqlSession();
+        BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+
+        List<Book> bookList = bookMapper.findByCategory(category);
+        sqlSession.close();
+        return bookList;
+    }
+
+
+    public List<Book> findBookByPrice(int price) {
+        SqlSession sqlSession = getSqlSession();
+        BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+
+        List<Book> bookList = bookMapper.findBookByPrice(price);
+        sqlSession.close();
+        return bookList;
+    }
 }

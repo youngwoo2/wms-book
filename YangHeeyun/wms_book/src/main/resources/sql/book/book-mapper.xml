@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sh.book.model.dao.BookMapper">
+    <insert id ="insertBook" useGeneratedKeys="true" keyProperty = "bookId">
+        insert into
+            tbl_book (title,author,description,price,category,created_at)
+        values (
+            #{title},#{author},#{description},#{price},#{category},NOW())
+    </insert>
+
+    <update id="updateBook">
+        update
+            tbl_book
+        set
+            title = #{title},
+            author = #{author},
+            description = #{description},
+            price = #{price},
+            category = #{category}
+        where
+            book_id = #{bookId}
+    </update>
+
+    <delete id = "deleteBook">
+        delete from
+            tbl_book
+        where
+            book_id = #{bookId}
+    </delete>
+
+    <resultMap id ="bookDtoMap" type="bookDto">
+        <id column = "book_id" property = "bookId"/>
+        <result column = "title" property="title"/>
+        <result column = "author" property="author"/>
+        <result column = "price" property="price"/>
+        <result column = "category" property="category"/>
+    </resultMap>
+    <select id = "searchBook" resultMap = "bookDtoMap">
+        select
+            *
+        from
+            tbl_book
+        <where>
+            <if test = "name == 'bookId'">
+                book_id = #{value}
+            </if>
+            <if test = "name == 'title'">
+                title like concat('%',#{value}, '%')
+            </if>
+            <if test = "name == 'author'">
+                author like concat('%',#{value}, '%')
+            </if>
+            <if test = "name == 'price'">
+                price = #{value}
+            </if>
+            <if test = "name == 'category'">
+                category like concat('%',#{value}, '%')
+            </if>
+        </where>
+        order by
+            book_id
+    </select>
+
+    <select id = "findAllBook" resultType = "com.sh.book.model.dto.BookDto">
+        select
+            *
+        from
+            tbl_book;
+    </select>
+</mapper>

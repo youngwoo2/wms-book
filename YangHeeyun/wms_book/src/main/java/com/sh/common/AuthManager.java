@@ -13,6 +13,10 @@ public class AuthManager {
 
     }
 
+    /**
+     * id, password로 조회한 UserDto객체를 전달받아 로그인 사용자 객체로 설정
+     * @param userdto
+     */
     // 로그인한 유저정보 저장
     public static void login(UserDto userdto) {
         loginUser = userdto;
