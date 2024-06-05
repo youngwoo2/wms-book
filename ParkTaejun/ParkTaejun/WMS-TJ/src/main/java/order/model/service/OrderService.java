@@ -9,23 +9,23 @@ import static com.sh.common.MyBatisTemplate.getSqlSession;
 
 public class OrderService {
 
-        public int createOrder (Order order){
+    public int createOrder(Order order) {
         SqlSession sqlSession = getSqlSession();
         OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
 
-       try {
-        int result = orderMapper.insertOrder(order);
-        for (OrderItem orderItem : order.getOrderItems()) {
-            orderItem.setOrderId(order.getOrderId());
-            result = orderMapper.insertOrderItem(orderItem);
+        try {
+            int result = orderMapper.insertOrder(order);
+            for (OrderItem orderItem : order.getOrderItems()) {
+                orderItem.setOrderId(order.getOrderId());
+                result = orderMapper.insertOrderItem(orderItem);
+            }
+            sqlSession.commit();
+            return result;
+        } catch (Exception e) {
+            sqlSession.rollback();
+            throw new RuntimeException(e);
+        } finally {
+            sqlSession.close();
         }
-        sqlSession.commit();
-        return result;
-    }catch (Exception e){
-           sqlSession.rollback();
-           throw new RuntimeException(e);
-       }finally {
-           sqlSession.close();
-       }
     }
 }
