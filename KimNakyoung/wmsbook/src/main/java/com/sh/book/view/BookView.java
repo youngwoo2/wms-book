@@ -28,9 +28,10 @@ public class BookView {
         while (true) {
             System.out.print(bookMenu);
             String choice = sc.next();
+            sc.nextLine();// 전에 next()로 번호를 받아서 개행 없애야함.
             switch (choice) {
                 case "1":
-                    inputBook();
+                    bookController.insertBook(inputBook());
                     break;
                 case "2":
                     System.out.println("도서정보 수정합니다.");
@@ -65,6 +66,7 @@ public class BookView {
         while (true) {
             System.out.print(bookMenu);
             String choice = sc.next();
+            sc.nextLine();// 전에 next()로 번호를 받아서 개행 없애야함.
             switch (choice) {
                 case "1":
                     //전체 목록을 조회
@@ -104,6 +106,7 @@ public class BookView {
         while (true) {
             System.out.print(bookMenu);
             String choice = sc.next();
+            sc.nextLine();// 전에 next()로 번호를 받아서 개행 없애야함.
             switch (choice) {
                 case "1":
                     //도서명
@@ -139,7 +142,7 @@ public class BookView {
     // 도서 상세 검색중 도서명/카테고리/저자/로 검색 (String용 입력)
     private String inputString(String type) {
         System.out.printf("> 조회할 %s : ", type);
-        sc.nextLine();// 전에 next()로 번호를 받아서 개행 없애야함.
+
         return sc.nextLine(); // 검색하는거에 공백 있음 그래서 nextLine()씀.
     }
 
@@ -152,16 +155,16 @@ public class BookView {
     //도서를 등록하기
     private BookDto inputBook() {
         System.out.println("> === 등록할 도서정보를 작성해주세요. ===");
-        System.out.println("도서명 : ");
+        System.out.print("도서명 : ");
         String title = sc.nextLine();
-        System.out.println("저자 : ");
+        System.out.print("저자 : ");
         String author = sc.nextLine();
-        System.out.println("설명 : ");
+        System.out.print("설명 : ");
         String description = sc.nextLine();
-        System.out.println("가격 : ");
+        System.out.print("가격 : ");
         int price = sc.nextInt();
         sc.nextLine(); // 개행 버리기
-        System.out.println("카테고리를 입력해주세요");
+        System.out.print("카테고리를 입력해주세요 : ");
         String category = sc.nextLine();
 //        Timestamp createdAt = new Timestamp(System.currentTimeMillis()); // 현재 시간
 
