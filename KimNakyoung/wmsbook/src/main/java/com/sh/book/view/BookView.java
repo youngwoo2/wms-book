@@ -21,7 +21,8 @@ public class BookView {
                 =====================
                 1.도서 등록
                 2.도서 정보 수정
-                3.도서 조회 및 검색
+                3.도서 삭제
+                4.도서 조회 및 검색
                 0.메인 메뉴로 돌아가기
                 =====================
                 입력:""";
@@ -37,6 +38,9 @@ public class BookView {
                     System.out.println("도서정보 수정합니다.");
                     break;
                 case "3":
+                    bookController.deleteBook(inputBookId("삭제"));
+                    break;
+                case "4":
                     //전체 목록을 조회
 //                    도서 아이디를 입력하고, 해당 도서 1건을 조회
                     //도서명, 저자, 카테고리, 가격 등을 기준으로 검색할수 있습니다.
@@ -169,10 +173,7 @@ public class BookView {
 //        Timestamp createdAt = new Timestamp(System.currentTimeMillis()); // 현재 시간
 
         return new BookDto(0,title,author,description,price,category,null);
-
-
-
-
+        
     }
 
 

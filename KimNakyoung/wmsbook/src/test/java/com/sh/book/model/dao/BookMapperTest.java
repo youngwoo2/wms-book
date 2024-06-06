@@ -5,6 +5,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Timestamp;
@@ -158,11 +159,25 @@ class BookMapperTest {
         assertThat(createdAt).isAfter(beforeInsert);
     }
 
-//    @Test
-//    void deleteBook() {
-//        int bookId = 33;
-//        bookMapper.deleteBook(bookId);
-//    }
+    @DisplayName("한건의 메뉴데이터를 삭제할 수 있다.")
+    @Test
+    void deleteBook() {
+        //given
+        String title = "C언어본색";
+        String author = "박정민";
+        String description = "명강의가 일으키는 C언어의 기적";
+        int price= 30000;
+        String category = "컴퓨터";
+        // bookId 는 auto , created_at now();
+        BookDto bookDto = new BookDto(0,title,author,description,price,category,null);
+        bookMapper.insertBook(bookDto); // 위에 넣은 임의의 데이터 삽입
+        int bookId = bookDto.getBookId();
+        //when
+        int result = bookMapper.deleteBook(bookId);
+        //then
+        assertThat(result).isEqualTo(1); // 한개의 레코드가 들어갔나?
+        assertThat(bookMapper.findByBookId(bookId)).isNull(); // 방금 삭제 했으니까
+    }
 
 
 

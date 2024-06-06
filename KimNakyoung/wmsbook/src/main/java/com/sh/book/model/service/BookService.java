@@ -81,6 +81,24 @@ public List<BookDto> findByAuthor(String author){
         }
     }
 
+    public int deleteBook(int bookId) {
+        SqlSession sqlSession = getSqlSession();
+        BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+        try {
+            int result = bookMapper.deleteBook(bookId);
+            sqlSession.commit();
+            return result;
+        } catch (Exception e) {
+            sqlSession.rollback();
+            throw new RuntimeException(e);
+        } finally {
+            sqlSession.close();
+        }
+
+    }
+
+
+
 
 
 

@@ -16,6 +16,6 @@ public interface BookMapper {
     // 지금은 Dto방식 씀.
     int insertBook(BookDto bookDto);
 
-//    int deleteBook(int bookId); // 테스트 삽입한거 삭제용 메서드
+    int deleteBook(int bookId); // 테스트 삽입한거 삭제용 메서드
 
 }
