@@ -1,12 +1,10 @@
-package com.sh.user.model.dao;
+package com.sh.book.model.dao;
 
 import com.sh.book.model.dao.BookMapper;
 import com.sh.book.model.dto.BookDto;
 import org.apache.ibatis.session.SqlSession;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Timestamp;
 import java.util.List;
 import static com.sh.common.MyBatisTemplate.getSqlSession;
 import static org.junit.jupiter.api.Assertions.*;
