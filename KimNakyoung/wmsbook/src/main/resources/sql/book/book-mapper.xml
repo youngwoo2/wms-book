@@ -45,5 +45,16 @@
     <delete id="deleteBook">
         delete from tbl_book where book_id = #{bookId}
     </delete>
+    <update id="updateBook">
+        update tbl_book
+        set
+        title = #{title},
+        author = #{author},
+        description = #{description},
+        price = #{price},
+        category = #{category}
+        where
+        book_id = #{bookId}
+    </update>
 
 </mapper>

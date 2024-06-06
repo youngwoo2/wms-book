@@ -49,4 +49,10 @@ public class BookController {
         int result = bookService.deleteBook(bookId);
         BookResultView.displayDeleteResult("도서 삭제",result);
     }
+    // 수정
+    public void updateBook(BookDto bookDto) {
+        int result = bookService.updateBook(bookDto);
+        BookResultView.displayResult("도서 수정",result);
+
+    }
 }

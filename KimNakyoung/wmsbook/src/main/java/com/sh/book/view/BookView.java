@@ -35,7 +35,7 @@ public class BookView {
                     bookController.insertBook(inputBook());
                     break;
                 case "2":
-                    System.out.println("도서정보 수정합니다.");
+                    bookController.updateBook(inputBookUpdqted());
                     break;
                 case "3":
                     bookController.deleteBook(inputBookId("삭제"));
@@ -176,25 +176,28 @@ public class BookView {
 
     }
 
-//    //도서를 수정하기
-////    도서수정은 도서아이디와 등록일을 제외한 모든 정보를 일괄수정합니다.
-//    private BookDto updateBook() {
-//        System.out.println("> === 수정할 도서정보를 작성해주세요");
-//        System.out.print("도서명 : ");
-//        String title = sc.nextLine();
-//        System.out.print("저자 : ");
-//        String author = sc.nextLine();
-//        System.out.print("설명 : ");
-//        String description = sc.nextLine();
-//        System.out.print("가격 : ");
-//        int price = sc.nextInt();
-//        sc.nextLine(); // 개행 버리기
-//        System.out.print("카테고리를 입력해주세요 : ");
-//        String category = sc.nextLine();
-////        Timestamp createdAt = new Timestamp(System.currentTimeMillis()); // 현재 시간
-//
-//        return new BookDto(0,title,author,description,price,category,null);
-//    }
+    //도서를 수정하기
+//    도서수정은 도서아이디와 등록일을 제외한 모든 정보를 일괄수정합니다.
+    private BookDto inputBookUpdqted() {
+        System.out.println("> === 수정할 도서정보를 작성해주세요");
+        System.out.print("도서코드 : ");
+        int bookId = sc.nextInt();
+        sc.nextLine(); // 개행 버리기
+        System.out.print("도서명 : ");
+        String title = sc.nextLine();
+        System.out.print("저자 : ");
+        String author = sc.nextLine();
+        System.out.print("설명 : ");
+        String description = sc.nextLine();
+        System.out.print("가격 : ");
+        int price = sc.nextInt();
+        sc.nextLine(); // 개행 버리기
+        System.out.print("카테고리를 입력해주세요 : ");
+        String category = sc.nextLine();
+//        Timestamp createdAt = new Timestamp(System.currentTimeMillis()); // 현재 시간
+        // createdAt은 수정 할 필요가 없으니까 null
+        return new BookDto(bookId,title,author,description,price,category,null);
+    }
 
 
 

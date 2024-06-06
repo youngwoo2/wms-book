@@ -104,6 +104,21 @@ public List<BookDto> findByAuthor(String author){
         }
     }
 
+    public int updateBook(BookDto bookDto) {
+        SqlSession sqlSession = getSqlSession();
+        BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+        try {
+            int result = bookMapper.updateBook(bookDto);
+            sqlSession.commit();
+            return result;
+        } catch (Exception e) {
+            sqlSession.rollback();
+            throw new RuntimeException(e);
+        } finally {
+            sqlSession.close();
+        }
+    }
+
 
 
 

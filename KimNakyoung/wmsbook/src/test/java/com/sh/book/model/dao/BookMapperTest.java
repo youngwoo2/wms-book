@@ -179,5 +179,45 @@ class BookMapperTest {
         assertThat(bookMapper.findByBookId(bookId)).isNull(); // 방금 삭제 했으니까
     }
 
+    @Test
+    void updateBook(){
+
+        //given
+        String title = "C언어본색";
+        String author = "박정민";
+        String description = "명강의가 일으키는 C언어의 기적";
+        int price= 30000;
+        String category = "컴퓨터";
+        BookDto bookDto = new BookDto(0,title,author,description,price,category,null);
+        bookMapper.insertBook(bookDto); // 위에 넣은 임의의 데이터 삽입
+        int bookId = bookDto.getBookId();
+
+        //수정할 데이터
+        String newTitle = "으뜸머신러닝";
+        String newAuthor = "강영민";
+        String newDescription = "머신러닝의 으뜸";
+        int newPrice= 25000;
+        String newCategory = "인공지능";
+        bookDto.setTitle(newTitle);
+        bookDto.setAuthor(newAuthor);
+        bookDto.setDescription(newDescription);
+        bookDto.setPrice(newPrice);
+        bookDto.setCategory(newCategory);
+
+        //when
+        int result = bookMapper.updateBook(bookDto);
+
+        //then
+        assertThat(result).isEqualTo(1); // 레코드가 넣어졌나 확인
+
+        BookDto bookDto1 = bookMapper.findByBookId(bookId); // book정보 찾기
+        assertThat(bookDto1.getBookId()).isEqualTo(bookId);
+        assertThat(bookDto1.getAuthor()).isEqualTo(newAuthor);
+        assertThat(bookDto1.getDescription()).isEqualTo(newDescription);
+        assertThat(bookDto1.getPrice()).isEqualTo(newPrice);
+        assertThat(bookDto1.getCategory()).isEqualTo(newCategory);
+
+    }
+
 
 }
