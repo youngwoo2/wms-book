@@ -2,9 +2,11 @@ package com.sh.book.model.service;
 
 import com.sh.book.model.dao.BookMapper;
 import com.sh.book.model.dto.BookDto;
+import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 
 import java.awt.print.Book;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import static com.sh.common.MyBatisTemplate.getSqlSession;
@@ -88,13 +90,18 @@ public List<BookDto> findByAuthor(String author){
             int result = bookMapper.deleteBook(bookId);
             sqlSession.commit();
             return result;
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             sqlSession.rollback();
-            throw new RuntimeException(e);
+            Throwable cause = e.getCause();
+            if (cause instanceof SQLIntegrityConstraintViolationException) {
+                // 외래 키 제약 조건 위반에 대한 예외 처리
+                return -1;
+            } else {
+                throw new RuntimeException(e);
+            }
         } finally {
             sqlSession.close();
         }
-
     }
 
 

@@ -47,6 +47,6 @@ public class BookController {
 
     public void deleteBook(int bookId) {
         int result = bookService.deleteBook(bookId);
-        BookResultView.displayResult("도서 삭제",result);
+        BookResultView.displayDeleteResult("도서 삭제",result);
     }
 }

@@ -180,8 +180,4 @@ class BookMapperTest {
     }
 
 
-
-
-
-
 }
