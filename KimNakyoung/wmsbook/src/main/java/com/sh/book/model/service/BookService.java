@@ -4,6 +4,7 @@ import com.sh.book.model.dao.BookMapper;
 import com.sh.book.model.dto.BookDto;
 import org.apache.ibatis.session.SqlSession;
 
+import java.awt.print.Book;
 import java.util.List;
 
 import static com.sh.common.MyBatisTemplate.getSqlSession;
@@ -63,6 +64,21 @@ public List<BookDto> findByAuthor(String author){
         List<BookDto> list = bookMapper.findByPrice(price);
         sqlSession.close();
         return list;
+    }
+
+    public int insertBook(BookDto bookDto) {
+        SqlSession sqlSession = getSqlSession();
+        BookMapper bookMapper = sqlSession.getMapper(BookMapper.class);
+        try {
+            int result = bookMapper.insertBook(bookDto);
+            sqlSession.commit(); // 트랜잭션 커밋하여 변경 사항 확정
+            return result;
+        } catch (Exception e) {
+            sqlSession.rollback(); // 오류 발생 시 롤백하여 변경 사항 취소 // 데이터베이스 작업의 일관성과 원자성을 보장!
+            throw new RuntimeException(e);
+        } finally {
+            sqlSession.close(); //마지막에 닫아야되서 finally에 넣기
+        }
     }
 
 

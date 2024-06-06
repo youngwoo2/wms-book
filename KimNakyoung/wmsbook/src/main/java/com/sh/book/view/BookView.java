@@ -1,7 +1,9 @@
 package com.sh.book.view;
 
 import com.sh.book.controller.BookController;
+import com.sh.book.model.dto.BookDto;
 
+import java.sql.Timestamp;
 import java.util.Scanner;
 
 
@@ -28,7 +30,7 @@ public class BookView {
             String choice = sc.next();
             switch (choice) {
                 case "1":
-                    System.out.println("도서 등록합니다.");
+                    inputBook();
                     break;
                 case "2":
                     System.out.println("도서정보 수정합니다.");
@@ -128,24 +130,51 @@ public class BookView {
         }
     }
 
-    // 도서 아이디를 입력하고, 해당 도서 1건을 조회
+    // 도서 아이디를 입력하고, 해당 도서 1건을 조회 (int용 입력)
     private int inputBookId(String type) {
         System.out.printf("> %s할 도서코드 : ", type);
         return sc.nextInt();
     }
 
-    // 도서 상세 검색중 도서명/카테고리/저자/로 검색
+    // 도서 상세 검색중 도서명/카테고리/저자/로 검색 (String용 입력)
     private String inputString(String type) {
         System.out.printf("> 조회할 %s : ", type);
         sc.nextLine();// 전에 next()로 번호를 받아서 개행 없애야함.
         return sc.nextLine(); // 검색하는거에 공백 있음 그래서 nextLine()씀.
     }
 
-    // 도서 상세 검색중 가격으로 검색
+    // 도서 상세 검색중 가격으로 검색 ( int용 입력)
     private int inputInt(String type) {
         System.out.printf("> 조회할 %s : ", type);
         return sc.nextInt();
     }
+
+    //도서를 등록하기
+    private BookDto inputBook() {
+        System.out.println("> === 등록할 도서정보를 작성해주세요. ===");
+        System.out.println("도서명 : ");
+        String title = sc.nextLine();
+        System.out.println("저자 : ");
+        String author = sc.nextLine();
+        System.out.println("설명 : ");
+        String description = sc.nextLine();
+        System.out.println("가격 : ");
+        int price = sc.nextInt();
+        sc.nextLine(); // 개행 버리기
+        System.out.println("카테고리를 입력해주세요");
+        String category = sc.nextLine();
+//        Timestamp createdAt = new Timestamp(System.currentTimeMillis()); // 현재 시간
+
+        return new BookDto(0,title,author,description,price,category,null);
+
+
+
+
+    }
+
+
+
+
 
 
 
