@@ -2,6 +2,7 @@ package com.sh.book.view;
 
 import com.sh.book.controller.BookController;
 import com.sh.book.model.dto.BookDto;
+import com.sh.user.view.UserView;
 
 import java.util.List;
 import java.util.Scanner;
@@ -151,14 +152,14 @@ public class BookView {
     }
 
     private void inputPrice() {
-        System.out.println("가격 : ");
+        System.out.print("가격 : ");
         int price = sc.nextInt();
         sc.nextLine();
         bookController.findByPrice(price);
     }
 
     private void inputCategory() {
-        System.out.println("카테고리 : ");
+        System.out.print("카테고리 : ");
         String category = sc.next();
         sc.nextLine();
         bookController.findByCategory(category);

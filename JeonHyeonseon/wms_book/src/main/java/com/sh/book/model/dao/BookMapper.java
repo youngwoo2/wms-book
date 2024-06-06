@@ -9,13 +9,13 @@ public interface BookMapper {
 
     BookDto findByBookId(int bookId);
 
-    BookDto findByTitle(String title);
+    List<BookDto> findByTitle(String title);
 
-    BookDto findByAuthor(String author);
+    List<BookDto> findByAuthor(String author);
 
-    BookDto findByCategory(String category);
+    List<BookDto> findByCategory(String category);
 
-    BookDto findByPrice(int price);
+    List<BookDto> findByPrice(int price);
 
     int insertBook(BookDto bookDto);
 

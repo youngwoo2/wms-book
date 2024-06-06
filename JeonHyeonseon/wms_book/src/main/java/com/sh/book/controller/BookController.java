@@ -31,8 +31,8 @@ public class BookController {
 
     public void findByTitle(String title) {
         try {
-            BookDto bookDto = BookService.findByTitle(title);
-            ResultBookView.displayBook(bookDto);
+            List<BookDto> list = BookService.findByTitle(title);
+            ResultBookView.displayBookList(list);
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -41,8 +41,8 @@ public class BookController {
 
     public void findByAuthor(String author) {
         try{
-            BookDto bookDto = BookService.findByAuthor(author);
-            ResultBookView.displayBook(bookDto);
+            List<BookDto> bookDto = BookService.findByAuthor(author);
+            ResultBookView.displayBookList(bookDto);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -50,18 +50,17 @@ public class BookController {
 
     public void findByCategory(String category) {
         try {
-            BookDto bookDto = BookService.findByCategory(category);
-            ResultBookView.displayBook(bookDto);
+            List<BookDto> bookDto = BookService.findByCategory(category);
+            ResultBookView.displayBookList(bookDto);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void findByPrice(int price) {
-        BookDto bookDto = null;
         try {
-            bookDto = BookService.findByPrice(price);
-            ResultBookView.displayBook(bookDto);
+            List<BookDto> bookDto = BookService.findByPrice(price);
+            ResultBookView.displayBookList(bookDto);
         } catch (Exception e) {
             e.printStackTrace();
         }
