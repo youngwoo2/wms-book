@@ -6,12 +6,11 @@ import java.util.List;
 
 public class ResultOrderView {
 
-    public static void displayOrdererList(List<OrderDto> orderList) {
-        System.out.print("> ");
-        for (int i = 0; i < orderList.size(); i++) {
-            OrderDto orderDto = orderList.get(i);
-            System.out.printf("%s.%s", orderDto.getOrdererName(), orderDto.getOrdererAddress());
+    public static void displayOrderBook(int result) {
+        if (result > 0) {
+            System.out.println("📦주문이 완료되었습니다📦");
+        } else {
+            System.out.println("🧐주문을 실패하였습니다. 다시 한 번 확인해주세요.🧐");
         }
-        System.out.println();
     }
 }
