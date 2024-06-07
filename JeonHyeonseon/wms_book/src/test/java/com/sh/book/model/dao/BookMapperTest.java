@@ -71,10 +71,11 @@ class BookMapperTest {
         // given
         String title = "데이터베이스 관리";
         // when
-        BookDto bookDto = bookMapper.findByTitle(title);
+        List<BookDto> bookDto = bookMapper.findByTitle(title);
         // then
         assertThat(bookDto).isNotNull();
-        assertThat(bookDto.getTitle()).isEqualTo(title);
+        assertThat(bookDto).isNotEmpty();
+        assertThat(bookDto.get(0).getTitle()).isEqualTo(title);
     }
 
     @DisplayName("저자로 검색")
@@ -83,10 +84,11 @@ class BookMapperTest {
         // given
         String author = "김철수";
         // when
-        BookDto bookDto = bookMapper.findByAuthor(author);
+        List<BookDto> bookDto = bookMapper.findByAuthor(author);
         // then
         assertThat(bookDto).isNotNull();
-        assertThat(bookDto.getAuthor()).isEqualTo(author);
+        assertThat(bookDto).isNotEmpty();
+        assertThat(bookDto.get(0).getAuthor()).isEqualTo(author);
     }
 
     @DisplayName("카테고리로 검색")
@@ -95,10 +97,11 @@ class BookMapperTest {
         // given
         String category = "인공지능";
         // when
-        BookDto bookDto = bookMapper.findByCategory(category);
+        List<BookDto> bookDto = bookMapper.findByCategory(category);
         // then
         assertThat(bookDto).isNotNull();
-        assertThat(bookDto.getCategory()).isEqualTo(category);
+        assertThat(bookDto).isNotEmpty();
+        assertThat(bookDto.get(0).getCategory()).isEqualTo(category);
     }
 
     @DisplayName("가격으로 검색")
