@@ -2,7 +2,7 @@ package book.controller;
 
 import book.model.entity.Book;
 import book.model.service.BookService;
-import user.view.ResultView;
+import book.view.BookResultView;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class BookController {
 
     public void findAll() {
         List<Book> list = bookService.findAll();
-        ResultView.displayBookList(list);
+        BookResultView.displayBookList(list);
 
     }
 
@@ -26,30 +26,31 @@ public class BookController {
 
     public void findByAuthor(String author) {
         List<Book> list = bookService.findByAuthor(author);
-        ResultView.displayBookByAuthor(list);
+        BookResultView.displayBookByAuthor(list);
 
     }
 
-    public void findByCategry(String category) {
+    public List<Book> findByCategry(String category) {
         List<Book> list = bookService.findByCategory(category);
-        ResultView.displayBookByCategory(list);
+        BookResultView.displayBookByCategory(list);
+        return list;
     }
 
     public void deleteBookById(int bookId) {
         int result = bookService.deleteBookById(bookId);
-        ResultView.displayDeletedBook(result);
+        BookResultView.displayDeletedBook(result);
 
     }
 
     public void updateBookInfo(Book book) {
         int result = bookService.updateBookInfo(book);
-        ResultView.displayUdateResult(" 책 정보 수정 : ", result);
+        BookResultView.displayUdateResult(" 책 정보 수정 : ", result);
 
     }
 
     public void inserBook(Book book) {
         int result = bookService.insertBook(book);
-        ResultView.displayInsertBook("책 등록 : ", result);
+        BookResultView.displayInsertBook("책 등록 : ", result);
 
     }
 }

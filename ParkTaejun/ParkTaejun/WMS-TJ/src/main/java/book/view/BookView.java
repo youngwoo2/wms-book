@@ -3,7 +3,6 @@ package book.view;
 
 import book.controller.BookController;
 import book.model.entity.Book;
-import user.view.ResultView;
 
 import java.util.Scanner;
 
@@ -132,7 +131,7 @@ public class BookView {
                     System.out.println("검색하실 책의 ID를 입력해주세요.");
                     int bookId = scanner.nextInt();
                     book = bookController.findByBookId(bookId);
-                    ResultView.displayBook(book);
+                    BookResultView.displayBook(book);
 
                     break;
 
