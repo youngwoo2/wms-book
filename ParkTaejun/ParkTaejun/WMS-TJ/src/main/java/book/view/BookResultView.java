@@ -1,11 +1,11 @@
-package user.view;
+package book.view;
 
 import book.model.entity.Book;
-import user.model.entity.User;
+import order.model.entity.Order;
 
 import java.util.List;
 
-public class ResultView {
+public class BookResultView {
 
     public static void displayBookList(List<Book> list) {
         if (list.isEmpty()) {
@@ -15,12 +15,14 @@ public class ResultView {
             System.out.printf("%s\t%s\t%s\t%s\t%s\n", "--도서 제목--", "--저자--", "--설명--", "--가격--", "--카테고리--");
             System.out.println("=================================================================");
             for (Book book : list) {
-                System.out.printf("%s\t%s\t%s\t%d\t%s\n",
+                System.out.printf("%d\t%s\t%s\t%s\t%d\t%s\n",
+                        book.getBookId(),
                         book.getTitle(),
                         book.getAuthor(),
                         book.getDescription(),
                         book.getPrice(),
-                        book.getCategory()
+                        book.getCategory(),
+                        book.getCreatedAt()
                 );
             }
         }
@@ -75,23 +77,27 @@ public class ResultView {
                         book.getDescription(),
                         book.getPrice(),
                         book.getCategory());
+
             }
         }
     }
 
     public static void displayDeletedBook(int result) {
-        if (result != 0){
+        if (result != 0) {
             System.out.println("책 삭제 성공");
-        }else {
+        } else {
             System.out.println("책 삭제 실패");
         }
     }
 
     public static void displayUdateResult(String type, int result) {
-        System.out.println(">" + type + " " + (result>0 ? "🤗성공!!🤗" : "🤗실패!!🤗"));
+        System.out.println(">" + type + " " + (result > 0 ? "🤗성공!!🤗" : "🤗실패!!🤗"));
     }
 
     public static void displayInsertBook(String type, int result) {
         System.out.println(">" + type + " " + (result > 0 ? "🤗성공!!🤗" : "🤗실패🤗"));
     }
+
+
 }
+
