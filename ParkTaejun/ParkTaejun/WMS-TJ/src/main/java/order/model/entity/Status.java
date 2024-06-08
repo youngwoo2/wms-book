@@ -1,10 +1,10 @@
 package order.model.entity;
 
 public enum Status {
-    PENDING,
-    PREPARING,
-    SHIPPED,
-    DELIVERING,
-    DELIVERED,
-    CANCELLED
+    주문확인중,
+    베송준비중,
+    발송완료,
+    베송중,
+    배송완료,
+    주문취소
 }

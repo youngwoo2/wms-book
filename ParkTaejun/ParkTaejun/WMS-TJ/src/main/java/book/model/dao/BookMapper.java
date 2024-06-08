@@ -12,4 +12,10 @@ public interface BookMapper {
     List<Book> findByAuthor(String author);
 
     List<Book> findByCategory(String category);
+
+    int deleteBookById(int bookId);
+
+    int updateBookInfo(Book book);
+
+    int insertBook(Book book);
 }
