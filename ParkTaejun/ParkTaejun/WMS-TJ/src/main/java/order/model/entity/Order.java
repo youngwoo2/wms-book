@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
-
+import java.util.ArrayList;
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -23,5 +24,7 @@ public class Order {
     private Timestamp orderDate;
 
     private Status status;
+
+    private List<OrderItem> orderItems;
 
 }
