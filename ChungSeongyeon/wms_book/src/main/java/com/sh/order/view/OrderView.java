@@ -10,14 +10,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class OrderView {
-    private Scanner sc = new Scanner(System.in);
-    private OrderController orderController = new OrderController();
+    private final Scanner sc = new Scanner(System.in);
+    private final OrderController orderController = new OrderController();
 
     public void orderMenu() {
         String orderMenu = """
                 [주문 관리 메뉴 선택]
                 1. 주문 생성
-                2. 주문 처리
+                2. 주문 상태별 조회
+                3. 주문 상세 조회
                 0. 뒤로 가기
                 """;
         while (true) {
@@ -28,7 +29,10 @@ public class OrderView {
                     createOrder();
                     break;
                 case "2":
-                    System.out.println("주문 처리");
+                    searchOrdersByStatus();
+                    break;
+                case "3":
+                    searchOrderById();
                     break;
                 case "0":
                     return;
@@ -41,7 +45,7 @@ public class OrderView {
     private void createOrder() {
         System.out.println("--[주문 생성]--");
         System.out.print("> 주문자 이름: ");
-        sc.nextLine(); // Consume newline
+        sc.nextLine();
         String ordererName = sc.nextLine();
         System.out.print("> 배송지: ");
         String ordererAddress = sc.nextLine();
@@ -53,7 +57,7 @@ public class OrderView {
             int bookId = sc.nextInt();
             System.out.print("> 수량: ");
             int quantity = sc.nextInt();
-            sc.nextLine(); // Consume newline
+            sc.nextLine();
 
             orderItems.add(new OrderItemDto(0, 0, bookId, quantity));
 
@@ -68,5 +72,40 @@ public class OrderView {
         orderController.registerOrder(order);
 
         System.out.println("✅ 주문이 등록되었습니다.");
+    }
+
+    private void searchOrdersByStatus() {
+        System.out.println("--[주문 상태별 조회]--");
+        System.out.println("주문 상태를 선택하세요: ");
+        for (OrderableStatus status : OrderableStatus.values()) {
+            System.out.println(status);
+        }
+        sc.nextLine();
+        String statusInput = sc.nextLine();
+        try {
+            OrderableStatus status = OrderableStatus.valueOf(statusInput);
+            List<OrderDto> orders = orderController.getOrdersByStatus(status);
+            orders.forEach(order -> {
+                System.out.println(order);
+                order.getOrderItems().forEach(item -> System.out.println("  " + item));
+            });
+        } catch (IllegalArgumentException e) {
+            System.out.println("❌잘못된 주문 상태입니다.❌");
+        }
+    }
+
+    private void searchOrderById() {
+        System.out.println("--[주문 상세 조회]--");
+        System.out.print("> 주문 번호: ");
+        int orderId = sc.nextInt();
+        sc.nextLine();
+
+        OrderDto order = orderController.getOrderById(orderId);
+        if (order != null) {
+            System.out.println(order);
+            order.getOrderItems().forEach(item -> System.out.println("  " + item));
+        } else {
+            System.out.println("❌주문을 찾을 수 없습니다.❌");
+        }
     }
 }

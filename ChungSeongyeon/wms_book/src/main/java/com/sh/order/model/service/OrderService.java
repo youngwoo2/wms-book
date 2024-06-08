@@ -5,6 +5,9 @@ import com.sh.order.model.dto.OrderDto;
 import com.sh.order.model.dto.OrderItemDto;
 import com.sh.order.model.dto.OrderableStatus;
 import org.apache.ibatis.session.SqlSession;
+
+import java.util.List;
+
 import static com.sh.common.MyBatisTemplate.getSqlSession;
 
 public class OrderService {
@@ -30,6 +33,23 @@ public class OrderService {
             throw new RuntimeException(e);
         } finally {
             sqlSession.close();
+        }
+    }
+    public List<OrderDto> getOrdersByStatus(OrderableStatus status) {
+        try (SqlSession sqlSession = getSqlSession()) {
+            OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+            return orderMapper.selectOrdersByStatus(status);
+        } catch (Exception e) {
+            throw new RuntimeException("주문상태로 주문 조회 실패", e);
+        }
+    }
+
+    public OrderDto getOrderById(int orderId) {
+        try (SqlSession sqlSession = getSqlSession()) {
+            OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+            return orderMapper.selectOrderById(orderId);
+        } catch (Exception e) {
+            throw new RuntimeException("ID로 주문 조회 실패", e);
         }
     }
 }
