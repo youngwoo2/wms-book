@@ -16,9 +16,7 @@ import com.sh.order.model.dto.Status;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 import static com.sh.order.model.dto.Status.ORDER_CONFIRMING;
 
@@ -44,7 +42,7 @@ public class OrderView {
             String choice = sc.next();
             switch (choice) {
                 case "1" :
-                    orderBook();
+                    orderBook(); // 주문생성
                     break;
                 case "2" :
                     System.out.println("주문 처리합니다.");
@@ -77,6 +75,9 @@ public class OrderView {
             sc.nextLine(); // 개행버리기
             System.out.print("배송지 : ");
             String orderAddress = sc.nextLine();
+
+        List<OrderItemDto> orderItemList = new ArrayList<>(); // 초기화
+        Map<Integer, String> bookTitleMap = new HashMap<>(); // 도서코드와 도서명을 매핑
             while (true) {
                 bookController.findAll();
                 System.out.print("주문하고 싶은 도서 코드 :");
@@ -96,6 +97,7 @@ public class OrderView {
                                 .findFirst()
                                 .get()
                                 .getTitle();
+                bookTitleMap.put(bookId, title);
 
 
                 System.out.print("주문하고 싶은 수량 : ");
@@ -116,18 +118,30 @@ public class OrderView {
         // 주문요청 (OrderController 메시지 전달) 및 결과확인
 
         System.out.println("주문을 요청합니다."); // 반복문 탈출하면 실행
-        OrderDto orderDto = new OrderDto(0,orderName,orderAddress,new Timestamp(System.currentTimeMillis()), Status.ORDER_CONFIRMING,null);
-        System.out.println(orderDto);
+        OrderDto orderDto = new OrderDto(0,orderName,orderAddress,new Timestamp(System.currentTimeMillis()), Status.ORDER_CONFIRMING,orderItemList);
 
         orderController.createOrder(orderDto);
+
+        // 주문 내역 출력
+        System.out.println("\n도서 주문서");
+        System.out.println("---------------");
+        System.out.println("주문자 : " + orderName);
+        System.out.println("배송지 : " + orderAddress);
+        System.out.println("주문일 : " + orderDto.getOrderDate());
+        System.out.println("--------------");
+        System.out.println("주문 목록");
+        System.out.println("--------------");
+        for (int i = 0; i < orderItemList.size(); i++) {
+            OrderItemDto item = orderItemList.get(i);
+//            BookDto book = bookController.findByBookIdList(item.getBookId()).get(0); // bookDto 가져오기
+            String bookTitle = bookTitleMap.get(item.getBookId());
+            System.out.printf("%d. %s (도서번호 %d번) %d권\n", i + 1, bookTitle, item.getBookId(), item.getQuantity());
+        }
+
+
         System.out.println("주문번호 : " + orderDto.getOrderId());
-        System.out.println("주문 정상 종료!!!!");
+
+        System.out.println("주문 정상 종료!!!! 주문관리로 다시 이동합니다~!");
 
     }
-
-    //주문처리메소드
-    //
-
-
-
 }

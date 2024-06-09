@@ -5,16 +5,16 @@
 <mapper namespace="com.sh.order.model.dao.OrderMapper">
     <insert id="insertOrder" useGeneratedKeys="true" keyProperty="orderId">
         insert into
-        tbl_order (order_id, order_name,order_address,order_date,status)
+        tbl_order (order_id, orderer_name,orderer_address,order_date,status)
         values (
-        #{orderId},#{orderName},#{orderAddress},#{orderDate},#{status}
+        #{orderId},#{orderName},#{orderAddress},#{orderDate},#{status.value}
         )
     </insert>
     <insert id="insertOrderItem" useGeneratedKeys="true" keyProperty="orderItemId">
         insert into
-        tbl_order_menu (order_item_id,order_id,book_id,quantity)
+        tbl_order_item (order_item_id,order_id,book_id,quantity)
         values (
-        #{orderItemId}, #{orderId},#{BookId},#{quantity}
+        #{orderItemId}, #{orderId},#{bookId},#{quantity}
         )
     </insert>
     <resultMap id="orderDtoMap" type="orderDto">
@@ -24,7 +24,7 @@
         <result column="orderer_name" property="orderName"/>
         <result column="orderer_address" property="orderAddress"/>
         <result column="order_date" property="orderDate"/>
-        <result column="status" property="status"/>
+        <result column="status" property="status" />
 
         <!-- 1:N 관계의 테이블 행 매핑 ofType : 실제 다루고 있는 타입-->
         <collection property="orderItemList" ofType="orderItemDto">
@@ -34,7 +34,7 @@
             <result column="quantity" property="quantity"/>
 
             <!-- 1:1 관계의 테이블 행 매핑 -->
-            <association property="book" javaType="bookDto">
+            <association property="bookDto" javaType="bookDto">
                 <id column="book_id" property="bookId"/>
                 <result column="title" property="title"/>
                 <result column="author" property="author"/>
