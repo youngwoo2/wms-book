@@ -6,4 +6,5 @@ import com.sh.order.model.entity.OrderItem;
 public interface OrderMapper {
     int insertOrder(Order order);
     int insertOrderItem(OrderItem orderItem);
+    Order findOrderItem(int orderId);
 }

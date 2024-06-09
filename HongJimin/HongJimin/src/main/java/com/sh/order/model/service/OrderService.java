@@ -16,9 +16,8 @@ public class OrderService {
 
         try {
             int result = orderMapper.insertOrder(order);
-//            System.out.println(order.getOrderId());
 
-            for(OrderItem orderItem : order.getOrderItemList()) {
+            for (OrderItem orderItem : order.getOrderItemList()) {
                 orderItem.setOrderId(order.getOrderId());
                 result = orderMapper.insertOrderItem(orderItem);
             }
@@ -27,7 +26,23 @@ public class OrderService {
         } catch (Exception e) {
             sqlSession.rollback();
             throw new CreateOrderTransactionException(ErrorCode.CREATE_ORDER_ERROR, e);
-        }finally {
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+    public Order findOrderItem(int orderId) {
+        SqlSession sqlSession = getSqlSession();
+        OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+
+        try {
+            Order orderResult = orderMapper.findOrderItem(orderId);
+            sqlSession.commit();
+            return orderResult;
+        } catch (Exception e) {
+            sqlSession.rollback();
+            throw new CreateOrderTransactionException(ErrorCode.CREATE_SELECT_ORDER_ERROR, e);
+        } finally {
             sqlSession.close();
         }
     }

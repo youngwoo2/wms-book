@@ -12,8 +12,11 @@ public class OrderController {
     public void createOrder(Order order) {
         try {
             int result = orderService.createOrder(order);
+
+            Order orderResult = orderService.findOrderItem(order.getOrderId());
+            OrderResultView.displayOrderInfo(orderResult);
+
             OrderResultView.displayResult("도서 주문서 등록 ", result);
-            OrderResultView.displayOrderInfo(order);
         } catch (CreateOrderTransactionException e) {
             e.printStackTrace();
             ErrorView.displayError(e.getErrorCode());

@@ -20,19 +20,16 @@ public class OrderView {
 
     public void orderMenu() {
 
-
         List<OrderItem> orderItemList = new ArrayList<>();
 
         while (true) {
-
             //도서 리스트 출력
             bookController.findAllBook();
 
             String orderMenu = """
                 ==============================
                    📑 도서 주문서를 작성합니다. 📑
-                ==============================
-                """;
+                ==============================""";
             System.out.println(orderMenu);
 
             System.out.print("▶ 도서 아이디 입력 : ");
@@ -61,11 +58,9 @@ public class OrderView {
         String address = sc.nextLine();
 
         System.out.println("📖 도서 주문 등록합니다.📖");
-        Order order = new Order(0, name, address, LocalDateTime.now(), Status.pending, orderItemList);
-//        System.out.println(order);
+        Order order = new Order(0, name, address, LocalDateTime.now(), Status.배송준비중, orderItemList);
 
         orderController.createOrder(order);
-//        OrderResultView.displayBookOrder(order);
     }
 }
 

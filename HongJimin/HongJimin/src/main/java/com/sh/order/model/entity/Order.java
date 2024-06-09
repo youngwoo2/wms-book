@@ -20,4 +20,13 @@ public class Order {
     private Status status;
 
     private List<OrderItem> orderItemList;
+
+
+    public Order(int orderId, String ordererName, String ordererAddress, LocalDateTime orderDate, Status status) {
+        this.orderId = orderId;
+        this.ordererName = ordererName;
+        this.ordererAddress = ordererAddress;
+        this.orderDate = orderDate;
+        this.status = status;
+    }
 }
