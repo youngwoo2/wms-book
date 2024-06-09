@@ -7,6 +7,8 @@ import com.sh.order.model.dto.OrderDto;
 import com.sh.order.model.dto.OrderItemDto;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.List;
+
 import static com.sh.common.MyBatisTemplate.getSqlSession;
 
 public class OrderService {
@@ -45,4 +47,29 @@ public class OrderService {
         }
     }
 
+    public List<OrderDto> findOrdersByStatus(String status) {
+        SqlSession sqlSession = getSqlSession();
+        OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+        try {
+            return orderMapper.findOrdersByStatus(status);
+        } catch (Exception e) {
+            sqlSession.rollback();
+            throw new RuntimeException(e);
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+    public OrderDto findOrderById(int orderId) {
+        SqlSession sqlSession = getSqlSession();
+        OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+        try {
+            return orderMapper.findOrderById(orderId);
+        } catch (Exception e) {
+            sqlSession.rollback();
+            throw new RuntimeException(e);
+        } finally {
+            sqlSession.close();
+        }
+    }
 }

@@ -3,9 +3,12 @@ package com.sh.order.controller;
 import com.sh.common.ErrorView;
 import com.sh.common.error.ErrorCode;
 import com.sh.order.model.dto.OrderDto;
+import com.sh.order.model.dto.Status;
 import com.sh.order.model.exception.CreateOrderTransactionException;
 import com.sh.order.model.service.OrderService;
 import com.sh.order.view.OrderResultView;
+
+import java.util.List;
 
 public class OrderController {
     private OrderService orderService = new OrderService();
@@ -27,6 +30,14 @@ public class OrderController {
         }
 
 
+    }
+
+    public List<OrderDto> findOrdersByStatus(Status status) {
+        return orderService.findOrdersByStatus(status.name());
+    }
+
+    public OrderDto findOrderById(int orderId) {
+        return orderService.findOrderById(orderId);
     }
 }
 

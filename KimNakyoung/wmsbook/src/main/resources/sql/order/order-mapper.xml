@@ -17,6 +17,47 @@
         #{orderItemId}, #{orderId},#{bookId},#{quantity}
         )
     </insert>
+
+    <!-- 상태별 주문 목록 조회 -->
+    <select id="findOrdersByStatus" parameterType="string" resultMap="orderDtoMap">
+        SELECT
+        o.*,
+        i.*,
+        b.*,
+        CASE
+        WHEN o.status = '주문확인중' THEN 'ORDER_CONFIRMING'
+        WHEN o.status = '배송준비중' THEN 'PREPARING_FOR_SHIPMENT'
+        WHEN o.status = '발송완료' THEN 'SHIPPED'
+        WHEN o.status = '배송중' THEN 'IN_TRANSIT'
+        WHEN o.status = '배송완료' THEN 'DELIVERED'
+        WHEN o.status = '주문취소' THEN 'ORDER_CANCELLED'
+        ELSE o.status
+        END AS status
+        FROM tbl_order o
+        LEFT JOIN tbl_order_item i ON o.order_id = i.order_id
+        LEFT JOIN tbl_book b ON i.book_id = b.book_id
+        WHERE o.status = #{status}
+    </select>
+
+    <!-- 주문번호로 주문 정보 조회 -->
+    <select id="findOrderById" parameterType="int" resultMap="orderDtoMap">
+        SELECT o.*, i.*, b.*,
+        CASE
+        WHEN o.status = '주문확인중' THEN 'ORDER_CONFIRMING'
+        WHEN o.status = '배송준비중' THEN 'PREPARING_FOR_SHIPMENT'
+        WHEN o.status = '발송완료' THEN 'SHIPPED'
+        WHEN o.status = '배송중' THEN 'IN_TRANSIT'
+        WHEN o.status = '배송완료' THEN 'DELIVERED'
+        WHEN o.status = '주문취소' THEN 'ORDER_CANCELLED'
+        ELSE o.status
+        END AS status
+        FROM tbl_order o
+        LEFT JOIN tbl_order_item i ON o.order_id = i.order_id
+        LEFT JOIN tbl_book b ON i.book_id = b.book_id
+        WHERE o.order_id = #{orderId}
+    </select>
+
+
     <resultMap id="orderDtoMap" type="orderDto">
         <!-- id - PK컬럼 매핑용 -->
         <id column="order_id" property="orderId"/>

@@ -32,7 +32,7 @@ public class OrderView {
         String orderMenu = """
                 =====================
                 1.주문 생성
-                2.주문 처리
+                2.주문 조회
                 0.종료
                 =====================
                 입력 : """;
@@ -40,12 +40,13 @@ public class OrderView {
         while (true) {
             System.out.print(orderMenu);
             String choice = sc.next();
+            sc.nextLine();
             switch (choice) {
                 case "1" :
                     orderBook(); // 주문생성
                     break;
                 case "2" :
-                    System.out.println("주문 처리합니다.");
+                    findOrderMenu(); // 주문조회
                     break;
                 case "0" :
                     return;
@@ -144,4 +145,123 @@ public class OrderView {
         System.out.println("주문 정상 종료!!!! 주문관리로 다시 이동합니다~!");
 
     }
+
+    public void findOrderMenu() {
+
+        String orderFindMenu = """
+                주문 조회
+                원하는 기능을 선택해주세요.
+                =====================
+                1.상태별 주문 조회
+                2.주문번호로 조회
+                0.주문관리 메뉴로 돌아가기
+                =====================
+                입력:""";
+        System.out.println("주문조회를 선택하셨습니다.");
+        while (true) {
+            System.out.print(orderFindMenu);
+            String choice = sc.next();
+            sc.nextLine();
+            switch (choice) {
+                case "1" :
+                    findOrderByStatus();
+                    break;
+                case "2" :
+                    findOrderById();
+                    break;
+                case "0" :
+                    return;
+                default:
+                    System.out.println("잘못 입력 하셨습니다.");
+            }
+        }
+
+    }
+    // 상태별 주문 조회
+    public void findOrderByStatus() {
+        String orderByStatus = """
+                주문 조회
+                원하는 기능을 선택해주세요.
+                =====================
+                1. 주문확인중
+                2. 배송준비중
+                3. 발송완료
+                4. 배송중
+                5. 배송완료
+                6. 주문취소
+                =====================
+                입력:""";
+        System.out.print(orderByStatus);
+        int choice = sc.nextInt();
+        sc.nextLine();
+
+        Status status;
+        try {
+            status = switch (choice) {
+                case 1 -> Status.ORDER_CONFIRMING;
+                case 2 -> Status.PREPARING_FOR_SHIPMENT;
+                case 3 -> Status.SHIPPED;
+                case 4 -> Status.IN_TRANSIT;
+                case 5 -> Status.DELIVERED;
+                case 6 -> Status.ORDER_CANCELLED;
+                default -> throw new IllegalArgumentException("잘못된 선택입니다."); // 예외 던지거나 아니면 종료
+            };
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
+
+        // 선택된 상태의 주문 목록 조회
+        List<OrderDto> orders = orderController.findOrdersByStatus(status);
+        if (orders.isEmpty()) {
+            System.out.println("해당 상태의 주문이 없습니다.");
+            return;
+        }
+
+        // 주문 목록 출력
+        for (OrderDto order : orders) {
+            System.out.println("\n주문번호: " + order.getOrderId());
+            System.out.println("주문자: " + order.getOrderName());
+            System.out.println("배송지: " + order.getOrderAddress());
+            System.out.println("주문일: " + order.getOrderDate());
+            System.out.println("상태: " + order.getStatus());
+            System.out.println("주문 목록:");
+            for (int i = 0; i < order.getOrderItemList().size(); i++) {
+                OrderItemDto item = order.getOrderItemList().get(i);
+                System.out.printf("%d. %s (도서번호 %d번) %d권\n", i + 1, item.getBookdto().getTitle(),item.getBookId(), item.getQuantity() );
+            }
+        }
+    }
+
+
+
+    //주문번호로 주문 조회
+    public void findOrderById() {
+        System.out.println("찾고싶은 주문번호 입력:");
+        int orderId = sc.nextInt();
+        sc.nextLine();
+
+
+        // 선택된 상태의 주문 목록 조회
+        OrderDto order = orderController.findOrderById(orderId);
+        if (order == null) {
+            System.out.println("해당 상태의 주문이 없습니다.");
+            return;
+        }
+
+        // 주문 목록 출력
+
+            System.out.println("\n주문번호: " + order.getOrderId());
+            System.out.println("주문자: " + order.getOrderName());
+            System.out.println("배송지: " + order.getOrderAddress());
+            System.out.println("주문일: " + order.getOrderDate());
+            System.out.println("상태: " + order.getStatus());
+            System.out.println("주문 목록:");
+            for (int i = 0; i < order.getOrderItemList().size(); i++) {
+                OrderItemDto item = order.getOrderItemList().get(i);
+                System.out.printf("%d. %s (도서번호 %d번) %d권\n", i + 1, item.getBookdto().getTitle(),item.getBookId(), item.getQuantity() );
+            }
+    }
+
+
 }
