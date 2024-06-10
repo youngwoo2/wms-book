@@ -23,16 +23,7 @@
         SELECT
         o.*,
         i.*,
-        b.*,
-        CASE
-        WHEN o.status = '주문확인중' THEN 'ORDER_CONFIRMING'
-        WHEN o.status = '배송준비중' THEN 'PREPARING_FOR_SHIPMENT'
-        WHEN o.status = '발송완료' THEN 'SHIPPED'
-        WHEN o.status = '배송중' THEN 'IN_TRANSIT'
-        WHEN o.status = '배송완료' THEN 'DELIVERED'
-        WHEN o.status = '주문취소' THEN 'ORDER_CANCELLED'
-        ELSE o.status
-        END AS status
+        b.*
         FROM tbl_order o
         LEFT JOIN tbl_order_item i ON o.order_id = i.order_id
         LEFT JOIN tbl_book b ON i.book_id = b.book_id
@@ -41,16 +32,7 @@
 
     <!-- 주문번호로 주문 정보 조회 -->
     <select id="findOrderById" parameterType="int" resultMap="orderDtoMap">
-        SELECT o.*, i.*, b.*,
-        CASE
-        WHEN o.status = '주문확인중' THEN 'ORDER_CONFIRMING'
-        WHEN o.status = '배송준비중' THEN 'PREPARING_FOR_SHIPMENT'
-        WHEN o.status = '발송완료' THEN 'SHIPPED'
-        WHEN o.status = '배송중' THEN 'IN_TRANSIT'
-        WHEN o.status = '배송완료' THEN 'DELIVERED'
-        WHEN o.status = '주문취소' THEN 'ORDER_CANCELLED'
-        ELSE o.status
-        END AS status
+        SELECT o.*, i.*, b.*
         FROM tbl_order o
         LEFT JOIN tbl_order_item i ON o.order_id = i.order_id
         LEFT JOIN tbl_book b ON i.book_id = b.book_id
@@ -65,7 +47,7 @@
         <result column="orderer_name" property="orderName"/>
         <result column="orderer_address" property="orderAddress"/>
         <result column="order_date" property="orderDate"/>
-        <result column="status" property="status" />
+        <result column="status" property="status" javaType="com.sh.order.model.dto.Status" typeHandler="com.sh.order.model.typehandler.StatusTypeHandler"/>
 
         <!-- 1:N 관계의 테이블 행 매핑 ofType : 실제 다루고 있는 타입-->
         <collection property="orderItemList" ofType="orderItemDto">
@@ -75,7 +57,7 @@
             <result column="quantity" property="quantity"/>
 
             <!-- 1:1 관계의 테이블 행 매핑 -->
-            <association property="bookDto" javaType="bookDto">
+            <association property="bookdto" javaType="bookDto">
                 <id column="book_id" property="bookId"/>
                 <result column="title" property="title"/>
                 <result column="author" property="author"/>

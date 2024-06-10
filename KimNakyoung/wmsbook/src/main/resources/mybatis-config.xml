@@ -7,6 +7,8 @@
         <setting name="mapUnderscoreToCamelCase" value="True"/>
     </settings>
 
+
+
     <!--    mapper.xml에서 실제 클래스이름 대신 별칭을 사용할 수 있다.-->
 
     <typeAliases>
@@ -21,6 +23,11 @@
 
 
     </typeAliases>
+
+    <!-- 커스텀 타입 핸들러 등록 -->
+    <typeHandlers>
+        <typeHandler handler="com.sh.order.model.typehandler.StatusTypeHandler" javaType="com.sh.order.model.dto.Status"/>
+    </typeHandlers>
 
 
     <environments default="development">
