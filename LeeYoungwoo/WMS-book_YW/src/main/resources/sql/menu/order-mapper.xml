@@ -17,7 +17,7 @@
             #{ordererName}, #{ordererAddress}
         )
     </insert>
-    <insert id="insertOrderItem" useGeneratedKeys="true" keyProperty="orderItemId">
+    <insert id="insertOrderMenu" useGeneratedKeys="true" keyProperty="orderItemId">
         insert into
             tbl_order_item(order_id, book_id, quantity)
         values(

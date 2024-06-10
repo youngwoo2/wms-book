@@ -44,13 +44,14 @@ public class OrderMenuView {
         // 반복처리
         while (true) {
             System.out.print("도서 번호 입력 : ");
-            int orderId = sc.nextInt();
+            int bookId = sc.nextInt();
 
             System.out.print("수량 입력 : ");
             int quantity = sc.nextInt();
 
             // OrderItemDto 객체 처리
-            OrderItemDto orderItemDto = new OrderItemDto(0, 0, orderId, quantity, null);
+//            OrderItemDto orderItemDto = new OrderItemDto(0, 0, bookId, quantity, null);
+            OrderItemDto orderItemDto = new OrderItemDto(bookId, quantity);
             orderItemList.add(orderItemDto);
 
             // 추가주문 등록 여부 선택
