@@ -12,4 +12,6 @@ public interface OrderMapper {
     int insertOrderMenu(OrderItemDto orderItemDto);
 
     List<OrderDto> findByStatus(OrderStatus orderStatus);
+
+    OrderDto findByOrderStatus(OrderStatus orderStatus);
 }

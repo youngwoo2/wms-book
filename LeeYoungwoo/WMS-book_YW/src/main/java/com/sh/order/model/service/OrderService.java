@@ -48,4 +48,11 @@ public class OrderService {
         List<OrderDto> list = orderMapper.findByStatus(orderStatus);
         return list;
     }
+
+    public OrderDto findByOrderStatus(OrderStatus orderStatus) {
+        SqlSession sqlSession = getSqlSession();
+        OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+        OrderDto orderDto = orderMapper.findByOrderStatus(orderStatus);
+        return orderDto;
+    }
 }

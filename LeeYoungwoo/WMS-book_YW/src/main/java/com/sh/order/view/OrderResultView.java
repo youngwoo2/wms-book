@@ -2,6 +2,7 @@ package com.sh.order.view;
 
 import com.sh.book.model.dto.BookDto;
 import com.sh.order.model.dto.OrderDto;
+import com.sh.order.model.dto.OrderItemDto;
 
 import java.util.List;
 
@@ -36,5 +37,33 @@ public class OrderResultView {
             System.out.println("-------------------------------------------------------------------------------------------");
 
         }
+    }
+
+    public static void displayFindByOrderStatusList(OrderDto orderDto) {
+        System.out.println("🛒 주문 정보 🛒");
+        System.out.println("---------------------------------------------");
+        if (orderDto == null) {
+            System.out.println("😅😅😅 조회된 주문 목록이 없습니다. 😅😅😅");
+        } else {
+            System.out.println("주문번호 : " + orderDto.getOrderId());
+            System.out.println("주문자 : " + orderDto.getOrdererName());
+            System.out.println("배송지 : " + orderDto.getOrdererAddress());
+            System.out.println("주문일 : " + orderDto.getOrderDate());
+            System.out.println();
+
+            System.out.println("📄 주문목록 📄");
+            System.out.println("---------------------------------------------");
+            int i = 1;
+            for (OrderItemDto orderItemDto : orderDto.getOrderList()) {
+                System.out.printf("%d. %s (도서번호 : %d번) %d권\n",
+                        i++,
+                        orderItemDto.getBook().getTitle(),
+                        orderItemDto.getBook().getBookId(),
+                        orderItemDto.getQuantity());
+            }
+        }
+
+
+
     }
 }

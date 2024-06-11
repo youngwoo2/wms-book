@@ -29,7 +29,8 @@ public class OrderMenuView {
             String choice = sc.next();
             switch (choice) {
                 case "1" : orderController.createOrder(order()); break;
-                case "2" : orderController.findByStatus(insertStatus()); break;
+//                case "2" : orderController.findByStatus(insertStatus()); break;
+                case "2" : orderController.findByOrderStatus(insertStatus()); break;
                 case "0" : return;
                 default :
                     System.out.println("잘못 입력하셨습니다...");

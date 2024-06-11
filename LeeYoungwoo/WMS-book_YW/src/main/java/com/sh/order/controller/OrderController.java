@@ -32,4 +32,9 @@ public class OrderController {
         List<OrderDto> list = orderService.findByStatus(orderStatus);
         OrderResultView.displayFindByStatusList(list);
     }
+
+    public void findByOrderStatus(OrderStatus orderStatus) {
+        OrderDto orderDto = orderService.findByOrderStatus(orderStatus);
+        OrderResultView.displayFindByOrderStatusList(orderDto);
+    }
 }
