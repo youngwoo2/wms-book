@@ -20,7 +20,7 @@ public class OrderMenuView {
                 📄 주문관리 메뉴 📄
                 ===================================================
                 1. 주문 등록
-                2. 주문 상태 관리
+                2. 주문 상태별 조회
                 0. 돌아가기
                 ===================================================
                 입력 : """;
@@ -29,11 +29,38 @@ public class OrderMenuView {
             String choice = sc.next();
             switch (choice) {
                 case "1" : orderController.createOrder(order()); break;
-                case "2" : break;
+                case "2" : orderController.findByStatus(insertStatus()); break;
                 case "0" : return;
                 default :
                     System.out.println("잘못 입력하셨습니다...");
             }
+        }
+    }
+
+    private OrderStatus insertStatus() {
+        System.out.print("조회하실 주문 상태를 입력해주세요 : ");
+        System.out.println("""
+                ------------------------------------------
+                1 : 주문확인중
+                2 : 배송준비중
+                3 : 발송완료
+                4 : 배송중
+                5 : 배송완료
+                6 : 주문취소
+                ------------------------------------------
+                """);
+        String choice = sc.next();
+
+        switch (choice) {
+            case "1" : return OrderStatus.주문확인중;
+            case "2" : return OrderStatus.배송준비중;
+            case "3" : return OrderStatus.발송완료;
+            case "4" : return OrderStatus.배송중;
+            case "5" : return OrderStatus.배송완료;
+            case "6" : return OrderStatus.주문취소;
+            default:
+                System.out.println("잘못 입력하셨습니다...");
+                return null;
         }
     }
 

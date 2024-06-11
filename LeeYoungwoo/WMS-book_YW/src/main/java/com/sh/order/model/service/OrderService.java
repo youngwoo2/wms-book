@@ -2,6 +2,7 @@ package com.sh.order.model.service;
 
 import com.sh.book.model.dao.BookMapper;
 import com.sh.book.model.dto.BookDto;
+import com.sh.order.model.OrderStatus;
 import com.sh.order.model.dao.OrderMapper;
 import com.sh.order.model.dto.OrderDto;
 import com.sh.order.model.dto.OrderItemDto;
@@ -39,5 +40,12 @@ public class OrderService {
             sqlSession.close();
         }
 
+    }
+
+    public List<OrderDto> findByStatus(OrderStatus orderStatus) {
+        SqlSession sqlSession = getSqlSession();
+        OrderMapper orderMapper = sqlSession.getMapper(OrderMapper.class);
+        List<OrderDto> list = orderMapper.findByStatus(orderStatus);
+        return list;
     }
 }

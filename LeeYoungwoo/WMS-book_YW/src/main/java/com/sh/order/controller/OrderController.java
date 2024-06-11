@@ -2,6 +2,7 @@ package com.sh.order.controller;
 
 import com.sh.book.model.dto.BookDto;
 import com.sh.book.view.BookResultView;
+import com.sh.order.model.OrderStatus;
 import com.sh.order.model.dto.OrderDto;
 import com.sh.order.model.service.OrderService;
 import com.sh.order.view.OrderResultView;
@@ -25,5 +26,10 @@ public class OrderController {
         }
 
 
+    }
+
+    public void findByStatus(OrderStatus orderStatus) {
+        List<OrderDto> list = orderService.findByStatus(orderStatus);
+        OrderResultView.displayFindByStatusList(list);
     }
 }

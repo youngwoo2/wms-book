@@ -24,4 +24,13 @@
             #{orderId}, #{bookId}, #{quantity}
         )
     </insert>
+
+    <select id="findByStatus" resultType="orderDto">
+        select
+            *
+        from
+            tbl_order
+        where
+            status = #{orderStatus}
+    </select>
 </mapper>
